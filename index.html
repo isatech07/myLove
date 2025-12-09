@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Amor - 2 Anos Juntos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">2 ANOS COM VOCÊ</h1>
+            <p class="hero-subtitle">Nossa história de amor continua</p>
+            <div class="scroll-indicator">
+                <span>Role para descobrir</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="timeline">
+        <div class="container">
+            <h2 class="section-title">Nossa História</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-content">
+                        <div class="timeline-image">
+                            <img src="/img/foto-6.jpeg" alt="Primeiro Encontro">
+                        </div>
+                        <div class="timeline-text">
+                            <h3> A Primeira Foto</h3>
+                            <p class="timeline-date"> 28 de Janeiro de 2024</p>
+                            <p>Aquele dia em que nossos olhares se cruzaram e o mundo parou. Eu sabia que você seria especial na minha vida.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-content reverse">
+                        <div class="timeline-text">
+                            <h3>Nossa Primeira Viagem</h3>
+                            <p class="timeline-date">Março 2024</p>
+                            <p>Descobrimos o mundo juntos, criando memórias que vão durar para sempre.</p>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="img/foto-7.jpeg" alt="Primeira Viagem">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-content">
+                        <div class="timeline-image">
+                            <img src="/placeholder.svg?height=400&width=400" alt="Primeiro Ano">
+                        </div>
+                        <div class="timeline-text">
+                            <h3>Um Ano Juntos</h3>
+                            <p class="timeline-date">Janeiro 2024</p>
+                            <p>365 dias de amor, risadas e cumplicidade. O primeiro de muitos aniversários.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-content reverse">
+                        <div class="timeline-text">
+                            <h3>Hoje e Sempre</h3>
+                            <p class="timeline-date">Janeiro 2025</p>
+                            <p>Dois anos de amor verdadeiro. Mal posso esperar por todos os momentos que ainda vamos viver juntos.</p>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="/placeholder.svg?height=400&width=400" alt="Dois Anos">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Galeria de Momentos</h2>
+            <div class="carousel-container">
+                <button class="carousel-btn prev" id="prevBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <div class="carousel">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide">
+                            <img src="/placeholder.svg?height=600&width=800" alt="Momento 1">
+                            <div class="carousel-caption">
+                                <p>Nosso pôr do sol favorito</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/placeholder.svg?height=600&width=800" alt="Momento 2">
+                            <div class="carousel-caption">
+                                <p>Risadas que aquecem meu coração</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/placeholder.svg?height=600&width=800" alt="Momento 3">
+                            <div class="carousel-caption">
+                                <p>Aventuras inesquecíveis</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/placeholder.svg?height=600&width=800" alt="Momento 4">
+                            <div class="carousel-caption">
+                                <p>Jantares especiais só nossos</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/placeholder.svg?height=600&width=800" alt="Momento 5">
+                            <div class="carousel-caption">
+                                <p>Dançando na cozinha</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" id="nextBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </section>
+
+    <!-- Music Player Section -->
+    <section class="music-section" id="music">
+        <div class="container">
+            <h2 class="section-title">Playlist do Amor</h2>
+            <div class="music-player">
+                <div class="music-player-content">
+                    <div class="music-artwork">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Playlist Cover">
+                        <div class="music-vinyl"></div>
+                    </div>
+                    <div class="music-info">
+                        <h3 class="current-song">Nossa Música</h3>
+                        <p class="current-artist">As músicas que marcam nossa história</p>
+                        <div class="music-visualizer">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                        <div class="music-progress">
+                            <span class="time">0:00</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="time">3:45</span>
+                        </div>
+                        <div class="music-controls">
+                            <button class="control-btn" id="prevSong">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                                </svg>
+                            </button>
+                            <button class="control-btn play-btn" id="playBtn">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <button class="control-btn" id="nextSong">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M16 18h2V6h-2zm-11-7l8.5-6v12z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Letter Section -->
+    <section class="letter-section" id="letter">
+        <div class="container">
+            <h2 class="section-title">Uma Mensagem Para Você</h2>
+            <div class="letter-container">
+                <div class="letter-envelope" id="letterEnvelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body"></div>
+                    <p class="envelope-text">Clique para abrir</p>
+                </div>
+                <div class="letter-content" id="letterContent">
+                    <div class="letter-paper">
+                        <p class="letter-text" id="letterText"></p>
+                        <p class="letter-signature">Com todo meu amor, sempre seu/sua ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="floating-hearts-special"></div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quiz">
+        <div class="container">
+            <h2 class="section-title">Quiz do Casal</h2>
+            <p class="quiz-subtitle">Acerte todas as perguntas para desbloquear uma surpresa especial!</p>
+            <div class="quiz-container" id="quizContainer">
+                <div class="quiz-question" data-question="0">
+                    <h3>Onde foi nosso primeiro encontro?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="false">No parque</button>
+                        <button class="quiz-option" data-correct="false">No cinema</button>
+                        <button class="quiz-option" data-correct="true">No restaurante italiano</button>
+                        <button class="quiz-option" data-correct="false">Na praia</button>
+                    </div>
+                </div>
+                <div class="quiz-question hidden" data-question="1">
+                    <h3>Qual é a nossa música especial?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="false">Perfect - Ed Sheeran</button>
+                        <button class="quiz-option" data-correct="true">A Thousand Years - Christina Perri</button>
+                        <button class="quiz-option" data-correct="false">All of Me - John Legend</button>
+                        <button class="quiz-option" data-correct="false">Thinking Out Loud - Ed Sheeran</button>
+                    </div>
+                </div>
+                <div class="quiz-question hidden" data-question="2">
+                    <h3>Qual foi nossa primeira viagem juntos?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="false">Rio de Janeiro</button>
+                        <button class="quiz-option" data-correct="true">Praia do Rosa</button>
+                        <button class="quiz-option" data-correct="false">São Paulo</button>
+                        <button class="quiz-option" data-correct="false">Gramado</button>
+                    </div>
+                </div>
+            </div>
+            <div class="quiz-complete hidden" id="quizComplete">
+                <h3>Parabéns! Você desbloqueou a surpresa! 🎉</h3>
+                <button class="surprise-btn" id="surpriseBtn">Ver Surpresa</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Surprise Modal -->
+    <div class="surprise-modal hidden" id="surpriseModal">
+        <div class="surprise-content">
+            <button class="close-modal" id="closeModal">×</button>
+            <div class="surprise-animation">
+                <h2>Te Amo Infinitamente! ❤️</h2>
+                <p>Que venham muitos e muitos anos ao seu lado...</p>
+                <div class="fireworks">
+                    <div class="firework"></div>
+                    <div class="firework"></div>
+                    <div class="firework"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
