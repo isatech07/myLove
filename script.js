@@ -132,60 +132,83 @@ document.addEventListener('DOMContentLoaded', function() {
         updateAudioBanner();
     }, 8000);
 
-    // Gallery Carousel
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".carousel-slide");
-    const totalSlides = slides.length;
-    const track = document.getElementById("carouselTrack");
-    const dotsContainer = document.getElementById("carouselDots");
+    /* ==============================
+    GALERIA CARROSSEL
+    ============================== */
 
-    // Create dots
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement("div");
-        dot.className = "dot";
-        if (i === 0) dot.classList.add("active");
-        dot.addEventListener("click", () => goToSlide(i));
-        dotsContainer.appendChild(dot);
-    }
+    const track = document.querySelector('.gallery-track');
+    const cards = document.querySelectorAll('.gallery-card');
+    const prevBtn = document.querySelector('.nav-btn.prev');
+    const nextBtn = document.querySelector('.nav-btn.next');
+    const dots = document.querySelectorAll('.gallery-dots span');
 
-    const dots = document.querySelectorAll(".dot");
+    let currentIndex = 0;
 
-    function updateCarousel() {
-        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-        dots.forEach((dot, index) => {
-            dot.classList.toggle("active", index === currentSlide);
-        });
-    }
+    function updateGallery() {
+    const cardWidth = cards[0].offsetWidth + 32; // gap de 2rem
+    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
 
-    function goToSlide(index) {
-        currentSlide = index;
-        updateCarousel();
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-    }
-
-    document.getElementById("nextBtn").addEventListener("click", nextSlide);
-    document.getElementById("prevBtn").addEventListener("click", prevSlide);
-
-    // Auto-advance carousel
-    let carouselInterval = setInterval(nextSlide, 5000);
-
-    // Pause on hover
-    document.querySelector(".carousel").addEventListener("mouseenter", () => {
-        clearInterval(carouselInterval);
+    cards.forEach((card, index) => {
+        card.classList.toggle('active', index === currentIndex);
     });
 
-    document.querySelector(".carousel").addEventListener("mouseleave", () => {
-        carouselInterval = setInterval(nextSlide, 5000);
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
     });
+    }
+
+    nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateGallery();
+    });
+
+    prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    updateGallery();
+    });
+
+    dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateGallery();
+    });
+    });
+
+    window.addEventListener('load', updateGallery);
+    window.addEventListener('resize', updateGallery);
+
+// Vídeos - modal
+const videoCards = document.querySelectorAll('.video-card');
+const modal = document.getElementById('videoModal');
+const modalVideo = document.getElementById('modalVideo');
+const closeModal = document.querySelector('.close-modal');
+
+videoCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const video = card.querySelector('video');
+    const source = video.querySelector('source').src;
+
+    modalVideo.src = source;
+    modal.classList.add('active');
+    modalVideo.play();
+  });
+});
+
+closeModal.addEventListener('click', () => {
+  modal.classList.remove('active');
+  modalVideo.pause();
+  modalVideo.src = '';
+});
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.classList.remove('active');
+    modalVideo.pause();
+    modalVideo.src = '';
+  }
+});
+
+
 
     // Main Music Player - FUNCIONA INDEPENDENTEMENTE
     const audioPlayer = document.getElementById("audioPlayer");
@@ -197,6 +220,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const songTitle = document.getElementById("songTitle");
     const songArtist = document.getElementById("songArtist");
     const musicPlayer = document.querySelector(".music-player");
+    const albumArt = document.getElementById("albumArt");
+
     
     let isMainPlayerPlaying = false;
 
@@ -205,19 +230,23 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             src: "audio/Best Part - Daniel Caesar.mp3",
             title: "Best Part",
-            artist: "Daniel Caesar"
+            artist: "Daniel Caesar",
+            cover: "img/Best Part (feat_ H.E.R.).jpg"
         },
         {
             src: "audio/Get You-Daniel Caesar.mp3",
             title: "Get You",
-            artist: "Daniel Caesar"
+            artist: "Daniel Caesar",
+            cover: "img/Get You.jpg"
         },
         {
             src: "audio/Mirrors-Justin Timberlake.mp3",
             title: "Mirrors",
-            artist: "Justin Timberlake"
+            artist: "Justin Timberlake",
+            cover: "img/Mirrors.jpg"
         }
     ];
+
 
     let currentSongIndex = 0;
 
@@ -293,14 +322,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load song
     function loadSong(index) {
         const song = playlist[index];
+
         audioPlayer.src = song.src;
         songTitle.textContent = song.title;
         songArtist.textContent = song.artist;
-        
+
+        // 🎵 TROCA DA CAPA
+        albumArt.src = song.cover;
+
         audioPlayer.addEventListener('loadedmetadata', () => {
             totalTimeEl.textContent = formatTime(audioPlayer.duration);
         });
     }
+
 
     // Next song
     function nextSong() {
