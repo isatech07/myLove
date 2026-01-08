@@ -1,927 +1,759 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nosso Amor - 2 Anos Juntos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História de Amor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
     <!-- Floating Hearts Background -->
-    <div class="hearts-container" id="heartsContainer"></div>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <!-- Cursor Trail -->
+    <div class="cursor-trail" id="cursorTrail"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <div class="logo-heart">
+                <ion-icon name="heart"></ion-icon>
+            </div>
+            <span>H & I</span>
+        </div>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#hero"><ion-icon name="home-outline"></ion-icon> Inicio</a></li>
+            <li><a href="#momentos"><ion-icon name="images-outline"></ion-icon> Momentos</a></li>
+            <li><a href="#galeria"><ion-icon name="albums-outline"></ion-icon> Galeria</a></li>
+            <li><a href="#playlist"><ion-icon name="musical-notes-outline"></ion-icon> Playlist</a></li>
+            <li><a href="#videos"><ion-icon name="videocam-outline"></ion-icon> Videos</a></li>
+            <li><a href="#contagem"><ion-icon name="time-outline"></ion-icon> Contagem</a></li>
+            <li><a href="#quiz"><ion-icon name="help-circle-outline"></ion-icon> Quiz</a></li>
+            <li><a href="#carta"><ion-icon name="mail-outline"></ion-icon> Carta</a></li>
+        </ul>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">2 ANOS COM VOCÊ</h1>
-        <p class="hero-subtitle">Nossa história de amor continua</p>
+    <section id="hero" class="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-particles"></div>
+            <div class="hero-glow"></div>
+        </div>
+        
+        <!-- Animated Hearts -->
+        <div class="hero-hearts">
+            <div class="heart-float heart-1"><ion-icon name="heart"></ion-icon></div>
+            <div class="heart-float heart-2"><ion-icon name="heart"></ion-icon></div>
+            <div class="heart-float heart-3"><ion-icon name="heart"></ion-icon></div>
+            <div class="heart-float heart-4"><ion-icon name="heart"></ion-icon></div>
+            <div class="heart-float heart-5"><ion-icon name="heart"></ion-icon></div>
+            <div class="heart-float heart-6"><ion-icon name="heart"></ion-icon></div>
+            <div class="heart-float heart-7"><ion-icon name="heart"></ion-icon></div>
+            <div class="heart-float heart-8"><ion-icon name="heart"></ion-icon></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <ion-icon name="sparkles"></ion-icon>
+                <span>Uma historia especial</span>
+            </div>
+            <div class="hero-heart-main">
+                <div class="heart-pulse">
+                    <ion-icon name="heart"></ion-icon>
+                </div>
+                <div class="heart-rings">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">Nossa Historia</span>
+                <span class="title-line title-accent">de Amor</span>
+            </h1>
+            <p class="hero-subtitle">Cada momento ao seu lado e uma página sendo construída da nossa história</p>
+            <a href="#momentos" class="hero-btn">
+                <span class="btn-bg"></span>
+                <span class="btn-content">
+                    <ion-icon name="book-outline"></ion-icon>
+                    <span>Entrar na nossa historia</span>
+                </span>
+                <span class="btn-glow"></span>
+            </a>
+        </div>
+        
         <div class="scroll-indicator">
-          <span>Role para descobrir</span>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M12 5v14M19 12l-7 7-7-7" />
-          </svg>
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Role para descobrir</span>
+            <ion-icon name="chevron-down-outline"></ion-icon>
         </div>
-      </div>
     </section>
 
-    <!-- Audio Banner Carousel Section -->
-    <section class="audio-banner-section" id="audioBanner">
-      <div class="audio-banner-carousel">
-        <div class="audio-banner-track" id="audioBannerTrack">
-          <!-- Slide 1 -->
-          <div class="audio-banner-slide active">
-            <div class="audio-banner-overlay"></div>
-            <div class="audio-banner-content">
-              <h2 class="audio-banner-title">Mix de Músicas do Nosso Amor</h2>
-              <p class="audio-banner-subtitle">
-                Uma compilação especial dos nossos momentos
-              </p>
-              <button class="audio-banner-play-btn" data-audio="mix-1">
-                <svg
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
+    <!-- Melhores Momentos -->
+    <section id="momentos" class="section momentos">
+        <div class="section-bg">
+            <div class="bg-hearts">
+                <ion-icon name="heart"></ion-icon>
+                <ion-icon name="heart"></ion-icon>
+                <ion-icon name="heart"></ion-icon>
             </div>
-            <audio class="banner-audio" id="bannerAudio1" preload="metadata">
-              <source
-                src="audio/Best Part - Daniel Caesar.mp3"
-                type="audio/mpeg"
-              />
-            </audio>
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="audio-banner-slide">
-            <div class="audio-banner-overlay"></div>
-            <div class="audio-banner-content">
-              <h2 class="audio-banner-title">Narração Especial</h2>
-              <p class="audio-banner-subtitle">
-                Uma mensagem do coração para você
-              </p>
-              <button class="audio-banner-play-btn" data-audio="narration-1">
-                <svg
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
-            </div>
-            <audio class="banner-audio" id="bannerAudio2" preload="metadata">
-              <source src="audio/Get You-Daniel Caesar.mp3" type="audio/mpeg" />
-            </audio>
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="audio-banner-slide">
-            <div class="audio-banner-overlay"></div>
-            <div class="audio-banner-content">
-              <h2 class="audio-banner-title">Momentos Inesquecíveis</h2>
-              <p class="audio-banner-subtitle">
-                Revivendo cada segundo ao seu lado
-              </p>
-              <button class="audio-banner-play-btn" data-audio="narration-2">
-                <svg
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
-            </div>
-            <audio class="banner-audio" id="bannerAudio3" preload="metadata">
-              <source
-                src="audio/Mirrors-Justin Timberlake.mp3"
-                type="audio/mpeg"
-              />
-            </audio>
-          </div>
         </div>
-
-        <!-- Navigation Controls -->
-        <button class="audio-banner-nav prev" id="audioBannerPrev">
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        <button class="audio-banner-nav next" id="audioBannerNext">
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
-
-        <!-- Indicators -->
-        <div class="audio-banner-indicators" id="audioBannerIndicators">
-          <span class="indicator active"></span>
-          <span class="indicator"></span>
-          <span class="indicator"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="timeline-section" id="timeline">
-      <div class="container">
-        <h2 class="section-title">Nossa História</h2>
-        <div class="timeline">
-          <div class="timeline-item" data-reveal>
-            <div class="timeline-content">
-              <div class="timeline-image">
-                <img
-                  src="img/foto-1.jpeg"
-                  alt="Primeiro Encontro"
-                  onerror="this.src='/placeholder.svg?height=400&width=400'"
-                />
-              </div>
-              <div class="timeline-text">
-                <h3>A Primeira Foto</h3>
-                <p class="timeline-date">28 de Janeiro • 2024</p>
-                <p>
-                  Nesse dia tiramos nossa primeira foto… e também começamos a
-                  escrever nossa história juntos. O dia em que o amor virou
-                  destino. 💘
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="timeline-item" data-reveal>
-            <div class="timeline-content reverse">
-              <div class="timeline-text">
-                <h3>Primeiro Beijo</h3>
-                <p class="timeline-date">30 de Janeiro • 2024</p>
-                <p>
-                  Foi no mês em que tudo começou… A gente saía da igreja,
-                  conversava sobre sonhos e até sobre o futuro. Entre risadas,
-                  chuva de surpresa e mãos dadas na praia, aconteceu aquele
-                  momento que marcou nossa história — o nosso primeiro beijo. Um
-                  dia simples, mas cheio de significado. O início de um
-                  sentimento que só cresceu desde então. 🤍
-                </p>
-              </div>
-              <div class="timeline-image">
-                <img
-                  src="img/foto-2.jpeg"
-                  alt="Primeira Viagem"
-                  onerror="this.src='/placeholder.svg?height=400&width=400'"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="timeline-item" data-reveal>
-            <div class="timeline-content reverse">
-              <div class="timeline-text">
-                <h3>Juntos na Escola</h3>
-                <p class="timeline-date">8 de Março • 2024</p>
-                <p>
-                  Quando você chegou na escola pela primeira vez, tudo parecia
-                  diferente. O nervosismo virou alegria assim que os olhares se
-                  encontraram — como se Deus estivesse confirmando que aquele
-                  era o caminho certo para os dois. Entre risadas, conversas no
-                  intervalo e o apoio diário, a escola deixou de ser apenas um
-                  lugar de rotina… virou o cenário do crescimento do amor de
-                  vocês. Foi ali que Deus fortaleceu o vínculo, guiando cada
-                  passo, cada oração compartilhada e cada novo capítulo dessa
-                  história que só Ele poderia escrever. Uma prova viva de que
-                  quando vem de Deus, tudo floresce — até mesmo nos dias mais
-                  comuns. 💞✨
-                </p>
-              </div>
-              <div class="timeline-image">
-                <img
-                  src="img/foto-3.jpeg"
-                  alt="Dois Anos"
-                  onerror="this.src='/placeholder.svg?height=400&width=400'"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="timeline-item" data-reveal>
-            <div class="timeline-content">
-              <div class="timeline-image timeline-video">
-                <video controls>
-                  <source src="video/video-aliancas.mp4" type="video/mp4" />
-                  Seu navegador não suporta o elemento de vídeo.
-                </video>
-              </div>
-              <div class="timeline-text">
-                <h3>Alianças</h3>
-                <p class="timeline-date">16 de Março • 2024</p>
-                <p>
-                  No dia em que o mar testemunhou mais um passo da nossa
-                  história, trocamos nossas alianças na praia. As ondas tocavam
-                  nossos pés, o vento bagunçava o momento do jeitinho perfeito,
-                  e ali decidimos seguir juntos, com o mesmo brilho nos olhos e
-                  a mesma certeza no coração.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery-section" id="gallery">
-      <div class="container">
-        <h2 class="section-title">Galeria de Momentos</h2>
-
-        <div class="gallery-wrapper">
-          <!-- Botão anterior -->
-          <button class="nav-btn prev" aria-label="Foto anterior">❮</button>
-
-          <!-- Carrossel -->
-          <div class="gallery-carousel">
-            <div class="gallery-track">
-              <div class="gallery-card active">
-                <img src="img/foto-4.jpeg" alt="As melhores idas na praça" />
-                <span class="gallery-text">As melhores idas na praça</span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-5.jpeg" alt="Momentos felizes na escola" />
-                <span class="gallery-text">Momentos felizes na escola</span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-6.jpeg" alt="Dias inesquecíveis na praia" />
-                <span class="gallery-text">Dias inesquecíveis na praia</span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-7.jpeg" alt="Ministrações que marcaram" />
-                <span class="gallery-text">Ministrações que marcaram</span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-8.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text">Dançando na cozinha</span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-9.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text">Dançando na cozinha</span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-10.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text">Dançando na cozinha</span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-11.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text">Dançando na cozinha</span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-12.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text">Dançando na cozinha</span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-14.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text"></span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-15.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text"></span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-16.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text"></span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-17.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text"></span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-18.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text"></span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-19.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text"></span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-20.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text"></span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-21.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text"></span>
-              </div>
-
-              <div class="gallery-card">
-                <img src="img/foto-22.jpeg" alt="Dançando na cozinha" />
-                <span class="gallery-text"></span>
-              </div>
-            </div>
-          </div>
-
-        <!-- Botão próximo -->
-          <button class="nav-btn next" aria-label="Próxima foto">❯</button>
-        </div>
-
-        <!-- Dots -->
-        <div class="gallery-dots">
-          <span class="active"></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Videos Section -->
-    <section class="videos-section" id="videos">
         <div class="container">
+            <div class="section-header">
+                <div class="section-icon">
+                    <ion-icon name="sparkles"></ion-icon>
+                </div>
+                <h2>Linha do Tempo</h2>
+                <p>Cada lembrança é um tesouro guardado no coração</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-line">
+                    <div class="timeline-progress"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <ion-icon name="heart"></ion-icon>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-image">
+                            <img src="img/foto-1.jpeg" alt="Primeiro Encontro">
 
-            <h2 class="section-title">O Amor em Movimento</h2>
-            <p class="section-subtitle">
-            Registros simples de momentos que significam tudo pra nós. 💞
-            </p>
+                                <ion-icon name="expand-outline"></ion-icon>
 
-            <div class="videos-grid">
+                        </div>
+                        <div class="timeline-text">
+                            <span class="timeline-date">
+                                <ion-icon name="calendar-outline"></ion-icon>
+                                28 de Janeiro • 2024
+                            </span>
+                            <h3>Primeira foto</h3>
+                            <p>Nesse dia tiramos nossa primeira foto… e também começamos a escrever nossa história juntos. O dia em que o amor virou destino. 💘Nesse dia tiramos nossa primeira foto… e também começamos a escrever nossa história juntos. O dia em que o amor virou destino. 💘</p>
+                        </div>
+                        <div class="card-hearts">
+                            <ion-icon name="heart"></ion-icon>
+                            <ion-icon name="heart"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <ion-icon name="heart"></ion-icon>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-image">
+                            <img src="img/foto-2.jpeg" alt="Primeiro Cafe">
+                                <ion-icon name="expand-outline"></ion-icon>
+                        </div>
+                        <div class="timeline-text">
+                            <span class="timeline-date">
+                                <ion-icon name="calendar-outline"></ion-icon>
+                                30 de Janeiro • 2024
+                            </span>
+                            <h3>Primeiro Beijo</h3>
+                            <p>Foi no mês em que tudo começou… A gente saía da igreja, conversava sobre sonhos e até sobre o futuro. Entre risadas, chuva de surpresa e mãos dadas na praia, aconteceu aquele momento que marcou nossa história — o nosso primeiro beijo. Um dia simples, mas cheio de significado. O início de um sentimento que só cresceu desde então. 🤍</p>
+                        </div>
+                        <div class="card-hearts">
+                            <ion-icon name="heart"></ion-icon>
+                            <ion-icon name="heart"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <ion-icon name="heart"></ion-icon>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-image">
+                            <img src="img/foto-3.jpeg" alt="Primeira Viagem">
+                                <ion-icon name="expand-outline"></ion-icon>
+                        </div>
+                        <div class="timeline-text">
+                            <span class="timeline-date">
+                                <ion-icon name="calendar-outline"></ion-icon>
+                                8 de Março • 2024
+                            </span>
+                            <h3>Juntos na Escola</h3>
+                            <p>Quando você chegou na escola pela primeira vez, tudo parecia diferente. O nervosismo virou alegria assim que os olhares se encontraram — como se Deus estivesse confirmando que aquele era o caminho certo para os dois. Entre risadas, conversas no intervalo e o apoio diário, a escola deixou de ser apenas um lugar de rotina… virou o cenário do crescimento do amor de vocês. Foi ali que Deus fortaleceu o vínculo, guiando cada passo, cada oração compartilhada e cada novo capítulo dessa história que só Ele poderia escrever. Uma prova viva de que quando vem de Deus, tudo floresce — até mesmo nos dias mais comuns. 💞✨</p>
+                        </div>
+                        <div class="card-hearts">
+                            <ion-icon name="heart"></ion-icon>
+                            <ion-icon name="heart"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+               <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <ion-icon name="heart"></ion-icon>
+                        </div>
 
-            <!-- Vídeo 1 -->
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play-icon">
-                        <ion-icon name="play"></ion-icon>
+                        <div class="timeline-content glass-card">
+                            <div class="timeline-image">
+                            <video 
+                                src="video/video-aliancas.mp4" 
+                                controls 
+                                playsinline 
+                                preload="metadata">
+                            </video>
+                            </div>
+
+                            <div class="timeline-text">
+                            <span class="timeline-date">
+                                <ion-icon name="calendar-outline"></ion-icon>
+                                16 de Março • 2024
+                            </span>
+                            <h3>Alianças</h3>
+                            <p>
+                                No dia em que o mar testemunhou mais um passo da nossa história, trocamos nossas alianças na praia. As ondas tocavam nossos pés, o vento bagunçava o momento do jeitinho perfeito, e ali decidimos seguir juntos,
+                                 com o mesmo brilho nos olhos e a mesma certeza no coração.
+                            </p>
+                            </div>
+
+                            <div class="card-hearts">
+                            <ion-icon name="heart"></ion-icon>
+                            <ion-icon name="heart"></ion-icon>
+                            </div>
+                        </div>
+                        </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrossel de Fotos -->
+    <section id="galeria" class="section galeria">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon">
+                    <ion-icon name="camera"></ion-icon>
+                </div>
+                <h2>Entre Risos e Memórias</h2>
+                <p>Momentos eternizados em fotografias</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="carousel-wrapper">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <div class="slide-inner">
+                                    <img src="img/foto-4.jpeg" alt="Foto 1">
+                                    <div class="slide-overlay"></div>
+                                    <div class="slide-caption">
+                                        <ion-icon name="location"></ion-icon>
+                                        <span>Beijinhos na praça</span>
+                                    </div>
+                                    <div class="slide-hearts">
+                                        <ion-icon name="heart"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="slide-inner">
+                                    <img src="img/foto-5.jpeg" alt="Foto 2">
+                                    <div class="slide-overlay"></div>
+                                    <div class="slide-caption">
+                                        <ion-icon name="moon"></ion-icon>
+                                        <span>Dias felizes na escola</span>
+                                    </div>
+                                    <div class="slide-hearts">
+                                        <ion-icon name="heart"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="slide-inner">
+                                    <img src="img/foto-6.jpeg" alt="Foto 3">
+                                    <div class="slide-overlay"></div>
+                                    <div class="slide-caption">
+                                        <ion-icon name="leaf"></ion-icon>
+                                        <span>Entre o mar e o amor</span>
+                                    </div>
+                                    <div class="slide-hearts">
+                                        <ion-icon name="heart"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="slide-inner">
+                                    <img src="img/foto-7.jpeg" alt="Foto 4">
+                                    <div class="slide-overlay"></div>
+                                    <div class="slide-caption">
+                                        <ion-icon name="musical-note"></ion-icon>
+                                        <span>Dancando juntos</span>
+                                    </div>
+                                    <div class="slide-hearts">
+                                        <ion-icon name="heart"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="slide-inner">
+                                    <img src="img/foto-8.jpeg" alt="Foto 5">
+                                    <div class="slide-overlay"></div>
+                                    <div class="slide-caption">
+                                        <ion-icon name="trail-sign"></ion-icon>
+                                        <span>Aventura nas montanhas</span>
+                                    </div>
+                                    <div class="slide-hearts">
+                                        <ion-icon name="heart"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Anterior">
+                        <ion-icon name="chevron-back"></ion-icon>
+                    </button>
+                    <button class="carousel-btn next" aria-label="Proximo">
+                        <ion-icon name="chevron-forward"></ion-icon>
+                    </button>
+                </div>
+                <div class="carousel-indicators"></div>
+                <div class="carousel-counter">
+                    <span id="currentSlide">01</span>
+                    <span class="separator">/</span>
+                    <span id="totalSlides">05</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playlist do Casal -->
+    <section id="playlist" class="section playlist">
+        <div class="section-bg playlist-bg">
+            <div class="vinyl-decoration">
+                <div class="vinyl">
+                    <div class="vinyl-label"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="section-header light">
+                <div class="section-icon">
+                    <ion-icon name="musical-notes"></ion-icon>
+                </div>
+                <h2>Nossa Playlist</h2>
+                <p>As músicas que embalam nosso amor</p>
+                <div class="section-line light"></div>
+            </div>
+
+            <div class="player-wrapper">
+                <div class="player-container glass-card-dark">
+
+                    <div class="player-artwork">
+                        <div class="artwork-glow"></div>
+                        <img id="albumArt" src="/romantic-music-album-cover-roses.jpg" alt="Album Art">
+
+                        <div class="artwork-overlay">
+                            <div class="equalizer" id="equalizer">
+                                <div class="eq-bar"></div>
+                                <div class="eq-bar"></div>
+                                <div class="eq-bar"></div>
+                                <div class="eq-bar"></div>
+                                <div class="eq-bar"></div>
+                                <div class="eq-bar"></div>
+                                <div class="eq-bar"></div>
+                            </div>
+                        </div>
+
+                        <div class="vinyl-effect"></div>
                     </div>
 
-                    <video preload="metadata">
-                        <source src="video/video-momentos-1.mp4" type="video/mp4" />
-                    </video>
-                </div>
-
-                <h3>Quando o Amor Encontra a Presença</h3>
-                <p>Entre louvores e abraços, Deus nos lembrou do valor de estarmos juntos.</p>
-            </div>
-
-            <!-- Vídeo 2 -->
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play-icon">
-                        <ion-icon name="play"></ion-icon>
+                    <div class="player-info">
+                        <h3 id="songTitle">Perfect</h3>
+                        <p id="songArtist">Ed Sheeran</p>
                     </div>
 
-                    <video preload="metadata">
-                        <source src="video/video-momentos-2.mp4" type="video/mp4" />
-                    </video>
-                </div>
-
-                <h3>Dependentes no Teatro</h3>
-                <p>Mesmo em meio às dificuldades, subimos naquele palco confiando totalmente em Deus. Um teatro cheio, corações atentos e almas sendo tocadas pelo poder d’Ele. Não foi só uma apresentação — foi um encontro, uma entrega, uma prova de que somos completamente Dependentes.</p>
-            </div>
-
-            <!-- Vídeo 3 -->
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play-icon">
-                        <ion-icon name="play"></ion-icon>
+                    <div class="player-progress">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                            <div class="progress-handle" id="progressHandle"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="currentTime">0:00</span>
+                            <span id="duration">0:00</span>
+                        </div>
                     </div>
 
-                <video preload="metadata">
-                    <source src="video/video-momentos-3.mp4" type="video/mp4" />
-                    Seu navegador não suporta o elemento de vídeo.
-                </video>
-                </div>
+                    <div class="player-controls">
+                        <button class="control-btn" id="shuffleBtn" aria-label="Aleatório">
+                            <ion-icon name="shuffle"></ion-icon>
+                        </button>
 
-                <h3>DEPENDENTES - Quando o Céu Nos Sustentou</h3>
-                <p>Esse dia não foi fácil. Teve cansaço, imprevistos e momentos em que só a fé nos manteve de pé. Mas em cada dificuldade, Deus se fez presente, nos envolvendo, nos guiando e lembrando que Ele estava no controle. A gravação do clipe foi mais do que um trabalho: foi um ato de entrega, confiança e dependência total d’Ele.</p>
-            </div>
+                        <button class="control-btn" id="prevBtn" aria-label="Anterior">
+                            <ion-icon name="play-skip-back"></ion-icon>
+                        </button>
 
-            <!-- Vídeo 4 -->
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play-icon">
-                        <ion-icon name="play"></ion-icon>
+                        <button class="control-btn play-btn" id="playBtn" aria-label="Play/Pause">
+                            <ion-icon name="play" id="playIcon"></ion-icon>
+                            <div class="play-ripple"></div>
+                        </button>
+
+                        <button class="control-btn" id="nextBtn" aria-label="Próxima">
+                            <ion-icon name="play-skip-forward"></ion-icon>
+                        </button>
+
+                        <button class="control-btn" id="repeatBtn" aria-label="Repetir">
+                            <ion-icon name="repeat"></ion-icon>
+                        </button>
                     </div>
 
-                <video preload="metadata">
-                    <source src="video/video-momentos-4.mp4" type="video/mp4" />
-                </video>
+                    <div class="volume-control">
+                        <ion-icon name="volume-low" id="volumeIcon"></ion-icon>
+                        <div class="volume-bar" id="volumeBar">
+                            <div class="volume-fill" id="volumeFill"></div>
+                        </div>
+                        <ion-icon name="volume-high"></ion-icon>
+                    </div>
+
+                    <!-- ÁUDIO REAL -->
+                    <audio id="audioPlayer" style="display: none;"></audio>
+
                 </div>
 
-                <h3>DEPENDENTES - Avivá Caraguá </h3>
-                <p>Não foi fácil subir naquele palco. Houve oposição, críticas e momentos que tentaram nos fazer recuar. Mas Deus nos sustentou em cada passo. Em meio às lutas, Sua presença foi mais alta que qualquer voz contrária, e aquilo que era para nos parar se transformou em testemunho.</p>
-            </div>
-
-        <div class="video-modal" id="videoModal">
-            <div class="modal-content">
-                <button class="close-modal">✕</button>
-                <video id="modalVideo" controls></video>
+                <div class="playlist-list glass-card-dark">
+                    <div class="playlist-header">
+                        <ion-icon name="list"></ion-icon>
+                        <h4>Lista de Músicas</h4>
+                    </div>
+                    <ul id="playlistTracks"></ul>
+                </div>
             </div>
         </div>
-
-    </section>
-
-<!-- Music Player Section -->
-<section class="music-section" id="music">
-  <div class="container">
-
-    <h2 class="section-title">Playlist do Amor</h2>
-
-    <div class="music-player">
-
-      <!-- ÁUDIO PRINCIPAL -->
-      <audio id="audioPlayer" preload="metadata"></audio>
-
-      <div class="music-player-content">
-
-        <!-- VINIL / CAPA -->
-        <div class="vinyl-wrapper">
-          <div class="vinyl-disc">
-            <img
-              src="img/capas/best-part.jpg"
-              alt="Capa do álbum"
-              id="albumArt"
-            />
-            <div class="vinyl-center"></div>
-          </div>
-        </div>
-
-        <!-- INFORMAÇÕES DA MÚSICA -->
-        <div class="music-info">
-
-          <h3 class="current-song" id="songTitle">Best Part</h3>
-          <p class="current-artist" id="songArtist">Daniel Caesar</p>
-
-          <!-- ONDAS SONORAS -->
-          <div class="music-visualizer">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </div>
-
-          <!-- BARRA DE PROGRESSO -->
-          <div class="music-progress">
-            <span class="time" id="currentTime">0:00</span>
-
-            <div class="progress-bar" id="progressBar">
-              <div class="progress-fill" id="progressFill"></div>
-            </div>
-
-            <span class="time" id="totalTime">0:00</span>
-          </div>
-
-          <!-- CONTROLES (ÍCONES MANTIDOS) -->
-          <div class="music-controls">
-
-            <button class="control-btn" id="prevSong" aria-label="Música anterior">
-              <ion-icon name="play-skip-back"></ion-icon>
-            </button>
-
-            <button class="control-btn play-btn" id="playBtn" aria-label="Play / Pause">
-              <ion-icon name="play"></ion-icon>
-            </button>
-
-            <button class="control-btn" id="nextSong" aria-label="Próxima música">
-              <ion-icon name="play-skip-forward"></ion-icon>
-            </button>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <!-- Letter Section -->
-    <section class="letter-section" id="letter">
-      <div class="container">
-        <h2 class="section-title">Uma Mensagem Para Você</h2>
-        <div class="letter-container">
-          <div class="letter-envelope" id="letterEnvelope">
-            <div class="envelope-flap"></div>
-            <div class="envelope-body"></div>
-            <p class="envelope-text">Clique para abrir</p>
-          </div>
-          <div class="letter-content" id="letterContent">
-            <div class="letter-paper">
-              <p class="letter-text" id="letterText"></p>
-              <p class="letter-signature">
-                Com todo meu amor, sempre seu/sua ❤️
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="floating-hearts-special"></div>
     </section>
 
 
-    <!-- Voice Messages Section -->
-    <section class="voice-messages-section" id="voiceMessages">
-      <div class="container">
-        <h2 class="section-title">Mensagens do Coração</h2>
-        <p class="section-subtitle">Palavras especiais gravadas para você</p>
-        <div class="voice-messages-grid">
-          <div class="voice-message-card" data-reveal>
-            <div class="voice-wave">
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
+    <!-- Espaco para Videos -->
+    <section id="videos" class="section videos">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon">
+                    <ion-icon name="videocam"></ion-icon>
+                </div>
+                <h2>Nossos Videos</h2>
+                <p>Momentos em movimento</p>
+                <div class="section-line"></div>
             </div>
-            <h3>Mensagem 1</h3>
-            <p>Por que te amo</p>
-            <button class="voice-play-btn" data-voice="1">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
+            <div class="video-gallery">
+                <div class="video-card glass-card" data-video="1">
+                    <div class="video-thumbnail">
+                        <img src="/placeholder.svg?height=250&width=400" alt="Video 1">
+                        <div class="video-play-overlay">
+                            <div class="play-button">
+                                <ion-icon name="play"></ion-icon>
+                                <div class="play-ripple-1"></div>
+                                <div class="play-ripple-2"></div>
+                            </div>
+                        </div>
+                        <span class="video-duration">
+                            <ion-icon name="time-outline"></ion-icon>
+                            2:34
+                        </span>
+                    </div>
+                    <div class="video-info">
+                        <h4>Dia na Praia</h4>
+                        <p><ion-icon name="calendar-outline"></ion-icon> Marco 2024</p>
+                    </div>
+                </div>
+                <div class="video-card glass-card" data-video="2">
+                    <div class="video-thumbnail">
+                        <img src="/placeholder.svg?height=250&width=400" alt="Video 2">
+                        <div class="video-play-overlay">
+                            <div class="play-button">
+                                <ion-icon name="play"></ion-icon>
+                                <div class="play-ripple-1"></div>
+                                <div class="play-ripple-2"></div>
+                            </div>
+                        </div>
+                        <span class="video-duration">
+                            <ion-icon name="time-outline"></ion-icon>
+                            1:45
+                        </span>
+                    </div>
+                    <div class="video-info">
+                        <h4>Nossa Danca</h4>
+                        <p><ion-icon name="calendar-outline"></ion-icon> Maio 2024</p>
+                    </div>
+                </div>
+                <div class="video-card glass-card" data-video="3">
+                    <div class="video-thumbnail">
+                        <img src="/placeholder.svg?height=250&width=400" alt="Video 3">
+                        <div class="video-play-overlay">
+                            <div class="play-button">
+                                <ion-icon name="play"></ion-icon>
+                                <div class="play-ripple-1"></div>
+                                <div class="play-ripple-2"></div>
+                            </div>
+                        </div>
+                        <span class="video-duration">
+                            <ion-icon name="time-outline"></ion-icon>
+                            3:12
+                        </span>
+                    </div>
+                    <div class="video-info">
+                        <h4>Aniversario de Namoro</h4>
+                        <p><ion-icon name="calendar-outline"></ion-icon> Janeiro 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-backdrop"></div>
+        <div class="video-modal-content glass-card">
+            <button class="modal-close" id="closeModal">
+                <ion-icon name="close"></ion-icon>
             </button>
-            <audio class="voice-audio" preload="metadata">
-              <source
-                src="audio/Best Part - Daniel Caesar.mp3"
-                type="audio/mpeg"
-              />
-            </audio>
-          </div>
-
-          <div class="voice-message-card" data-reveal>
-            <div class="voice-wave">
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
+            <div class="video-player">
+                <div class="video-placeholder">
+                    <ion-icon name="play-circle"></ion-icon>
+                    <p>Video do momento especial</p>
+                </div>
             </div>
-            <h3>Mensagem 2</h3>
-            <p>Nossos momentos favoritos</p>
-            <button class="voice-play-btn" data-voice="2">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-            <audio class="voice-audio" preload="metadata">
-              <source
-                src="audio/Best Part - Daniel Caesar.mp3"
-                type="audio/mpeg"
-              />
-            </audio>
-          </div>
-
-          <div class="voice-message-card" data-reveal>
-            <div class="voice-wave">
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-              <div class="wave-bar"></div>
-            </div>
-            <h3>Mensagem 3</h3>
-            <p>Planos para o futuro</p>
-            <button class="voice-play-btn" data-voice="3">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-            <audio class="voice-audio" preload="metadata">
-              <source
-                src="audio/Best Part - Daniel Caesar.mp3"
-                type="audio/mpeg"
-              />
-            </audio>
-          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Special Places Section -->
-    <section class="places-section" id="places">
-      <div class="container">
-        <h2 class="section-title">Lugares Especiais</h2>
-        <p class="section-subtitle">Cada lugar conta uma história nossa</p>
-        <div class="places-grid">
-          <div class="place-card" data-reveal>
-            <div class="place-image">
-              <img src="/placeholder.svg?height=300&width=400" alt="Lugar 1" />
-              <div class="place-marker">📍</div>
-            </div>
-            <div class="place-info">
-              <h3>Nosso Primeiro Encontro</h3>
-              <p class="place-location">Restaurante Italiano</p>
-              <p class="place-description">
-                Onde tudo começou, nosso primeiro olhar, primeira conversa...
-              </p>
-            </div>
-          </div>
-
-          <div class="place-card" data-reveal>
-            <div class="place-image">
-              <img src="/placeholder.svg?height=300&width=400" alt="Lugar 2" />
-              <div class="place-marker">📍</div>
-            </div>
-            <div class="place-info">
-              <h3>Praia do Rosa</h3>
-              <p class="place-location">Santa Catarina</p>
-              <p class="place-description">
-                Nossa primeira viagem juntos, memórias inesquecíveis...
-              </p>
-            </div>
-          </div>
-
-          <div class="place-card" data-reveal>
-            <div class="place-image">
-              <img src="/placeholder.svg?height=300&width=400" alt="Lugar 3" />
-              <div class="place-marker">📍</div>
-            </div>
-            <div class="place-info">
-              <h3>Parque Favorito</h3>
-              <p class="place-location">Centro da Cidade</p>
-              <p class="place-description">
-                Onde passamos tardes conversando e sonhando juntos...
-              </p>
-            </div>
-          </div>
-
-          <div class="place-card" data-reveal>
-            <div class="place-image">
-              <img src="/placeholder.svg?height=300&width=400" alt="Lugar 4" />
-              <div class="place-marker">📍</div>
-            </div>
-            <div class="place-info">
-              <h3>Nossa Casa</h3>
-              <p class="place-location">Nosso Lar</p>
-              <p class="place-description">
-                O lugar mais especial, onde construímos nosso amor
-                diariamente...
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Promises Section -->
-    <section class="promises-section" id="promises">
-      <div class="container">
-        <h2 class="section-title">Minhas Promessas Para Você</h2>
-        <p class="section-subtitle">Compromissos de amor eterno</p>
-        <div class="promises-grid">
-          <div class="promise-card" data-reveal>
-            <div class="promise-icon">💝</div>
-            <h3>Sempre te Amar</h3>
-            <p>
-              Em todos os momentos, nos bons e nos desafiadores, meu amor por
-              você será constante e verdadeiro.
-            </p>
-          </div>
-
-          <div class="promise-card" data-reveal>
-            <div class="promise-icon">🌟</div>
-            <h3>Te Apoiar</h3>
-            <p>
-              Estarei ao seu lado em cada sonho, cada objetivo, cada desafio.
-              Juntos somos mais fortes.
-            </p>
-          </div>
-
-          <div class="promise-card" data-reveal>
-            <div class="promise-icon">😊</div>
-            <h3>Te Fazer Sorrir</h3>
-            <p>
-              Buscarei todos os dias trazer alegria para sua vida e tornar cada
-              momento especial.
-            </p>
-          </div>
-
-          <div class="promise-card" data-reveal>
-            <div class="promise-icon">🏡</div>
-            <h3>Construir Nosso Futuro</h3>
-            <p>
-              Planejar e realizar nossos sonhos juntos, criando uma vida repleta
-              de amor e felicidade.
-            </p>
-          </div>
-
-          <div class="promise-card" data-reveal>
-            <div class="promise-icon">💬</div>
-            <h3>Sempre Ouvir</h3>
-            <p>
-              Dar espaço para seus sentimentos, preocupações e alegrias. Nossa
-              comunicação será sempre aberta.
-            </p>
-          </div>
-
-          <div class="promise-card" data-reveal>
-            <div class="promise-icon">✨</div>
-            <h3>Crescer Juntos</h3>
-            <p>
-              Evoluir como pessoa e como casal, aprendendo e melhorando a cada
-              dia ao seu lado.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quiz Section -->
-    <section class="quiz-section" id="quiz">
-      <div class="container">
-        <h2 class="section-title">Quiz do Casal</h2>
-        <p class="quiz-subtitle">
-          Acerte todas as perguntas para desbloquear uma surpresa especial!
-        </p>
-        <div class="quiz-container" id="quizContainer">
-          <div class="quiz-question" data-question="0">
-            <h3>Onde foi nosso primeiro encontro?</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">
-                No parque
-              </button>
-              <button class="quiz-option" data-correct="false">
-                No cinema
-              </button>
-              <button class="quiz-option" data-correct="true">
-                Na Açaiteria
-              </button>
-              <button class="quiz-option" data-correct="false">Na praia</button>
-            </div>
-          </div>
-          <div class="quiz-question hidden" data-question="1">
-            <h3>Qual é a nossa música especial?</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">
-                Perfect - Ed Sheeran
-              </button>
-              <button class="quiz-option" data-correct="true">
-                Best Part - Daniel Caesar ft. H.E.R.
-              </button>
-              <button class="quiz-option" data-correct="false">
-                All of Me - John Legend
-              </button>
-              <button class="quiz-option" data-correct="false">
-                Thinking Out Loud - Ed Sheeran
-              </button>
-            </div>
-          </div>
-          <div class="quiz-question hidden" data-question="2">
-            <h3>Qual foi nossa primeira viagem juntos?</h3>
-            <div class="quiz-options">
-              <button class="quiz-option" data-correct="false">
-                Rio de Janeiro
-              </button>
-              <button class="quiz-option" data-correct="true">
-                Mogi das Cruzes
-              </button>
-              <button class="quiz-option" data-correct="false">
-                São Paulo
-              </button>
-              <button class="quiz-option" data-correct="false">Gramado</button>
-            </div>
-          </div>
-        </div>
-        <div class="quiz-complete hidden" id="quizComplete">
-          <h3>Parabéns! Você desbloqueou a surpresa! 🎉</h3>
-          <button class="surprise-btn" id="surpriseBtn">Ver Surpresa</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Surprise Modal -->
-    <div class="surprise-modal hidden" id="surpriseModal">
-      <div class="surprise-content">
-        <button class="close-modal" id="closeModal">×</button>
-        <div class="surprise-animation">
-          <h2>Te Amo Infinitamente! ❤️</h2>
-          <p>Que venham muitos e muitos anos ao seu lado...</p>
-          <div class="fireworks">
-            <div class="firework"></div>
-            <div class="firework"></div>
-            <div class="firework"></div>
-          </div>
-        </div>
-      </div>
     </div>
 
-       <!-- Countdown Section -->
-    <section class="countdown-section" id="countdown">
-      <div class="container">
-        <h2 class="section-title">Contagem Regressiva</h2>
-        <p class="countdown-subtitle">
-          Para o próximo capítulo da nossa história
-        </p>
-        <div class="countdown-display">
-          <div class="countdown-item">
-            <span class="countdown-number" id="countdownDays">000</span>
-            <span class="countdown-label">Dias</span>
-          </div>
-          <div class="countdown-item">
-            <span class="countdown-number" id="countdownHours">00</span>
-            <span class="countdown-label">Horas</span>
-          </div>
-          <div class="countdown-item">
-            <span class="countdown-number" id="countdownMinutes">00</span>
-            <span class="countdown-label">Minutos</span>
-          </div>
-          <div class="countdown-item">
-            <span class="countdown-number" id="countdownSeconds">00</span>
-            <span class="countdown-label">Segundos</span>
-          </div>
+    <!-- Contagem Regressiva -->
+    <section id="contagem" class="section contagem">
+        <div class="section-bg contagem-bg">
+            <div class="particles-container" id="countdownParticles"></div>
         </div>
-        <p class="countdown-message">
-          Até o nosso 3º aniversário em
-          <span id="anniversaryDate">28 de Janeiro 2027</span>!
-        </p>
-      </div>
+        <div class="container">
+            <div class="section-header light">
+                <div class="section-icon">
+                    <ion-icon name="hourglass"></ion-icon>
+                </div>
+                <h2>Contagem para Nosso Aniversario</h2>
+                <p>28 de Janeiro de 2027</p>
+                <div class="section-line light"></div>
+            </div>
+            <div class="countdown-container">
+                <div class="countdown-grid">
+                    <div class="countdown-item">
+                        <div class="countdown-card glass-card-dark">
+                            <div class="countdown-icon">
+                                <ion-icon name="calendar"></ion-icon>
+                            </div>
+                            <div class="countdown-value" id="days">
+                                <span class="digit">0</span>
+                                <span class="digit">0</span>
+                                <span class="digit">0</span>
+                            </div>
+                            <div class="countdown-label">Dias</div>
+                            <div class="countdown-glow"></div>
+                        </div>
+                    </div>
+                    <div class="countdown-separator">
+                        <ion-icon name="heart"></ion-icon>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-card glass-card-dark">
+                            <div class="countdown-icon">
+                                <ion-icon name="time"></ion-icon>
+                            </div>
+                            <div class="countdown-value" id="hours">
+                                <span class="digit">0</span>
+                                <span class="digit">0</span>
+                            </div>
+                            <div class="countdown-label">Horas</div>
+                            <div class="countdown-glow"></div>
+                        </div>
+                    </div>
+                    <div class="countdown-separator">
+                        <ion-icon name="heart"></ion-icon>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-card glass-card-dark">
+                            <div class="countdown-icon">
+                                <ion-icon name="stopwatch"></ion-icon>
+                            </div>
+                            <div class="countdown-value" id="minutes">
+                                <span class="digit">0</span>
+                                <span class="digit">0</span>
+                            </div>
+                            <div class="countdown-label">Minutos</div>
+                            <div class="countdown-glow"></div>
+                        </div>
+                    </div>
+                    <div class="countdown-separator">
+                        <ion-icon name="heart"></ion-icon>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-card glass-card-dark">
+                            <div class="countdown-icon">
+                                <ion-icon name="pulse"></ion-icon>
+                            </div>
+                            <div class="countdown-value" id="seconds">
+                                <span class="digit">0</span>
+                                <span class="digit">0</span>
+                            </div>
+                            <div class="countdown-label">Segundos</div>
+                            <div class="countdown-glow"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="countdown-message">
+                    <div class="message-heart">
+                        <ion-icon name="heart"></ion-icon>
+                    </div>
+                    <p>Cada segundo te amando mais</p>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- Quiz do Casal -->
+    <section id="quiz" class="section quiz">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon">
+                    <ion-icon name="help-circle"></ion-icon>
+                </div>
+                <h2>Quiz do Casal</h2>
+                <p>Quanto voce conhece sobre nos?</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="quiz-container glass-card">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress-fill" id="quizProgress"></div>
+                    </div>
+                    <span id="quizProgressText">Pergunta 1 de 5</span>
+                </div>
+                <div class="quiz-question" id="quizQuestion">
+                    <div class="question-number" id="questionNumber">01</div>
+                    <h3 id="questionText">Onde foi nosso primeiro encontro?</h3>
+                    <div class="quiz-options" id="quizOptions"></div>
+                </div>
+                <div class="quiz-result" id="quizResult">
+                    <div class="result-animation">
+                        <div class="result-hearts">
+                            <ion-icon name="heart"></ion-icon>
+                            <ion-icon name="heart"></ion-icon>
+                            <ion-icon name="heart"></ion-icon>
+                        </div>
+                        <div class="result-icon">
+                            <ion-icon name="trophy" id="resultIcon"></ion-icon>
+                        </div>
+                    </div>
+                    <h3 id="resultTitle">Parabens!</h3>
+                    <p id="resultText">Voce acertou 5 de 5 perguntas!</p>
+                    <button class="quiz-restart" id="restartQuiz">
+                        <ion-icon name="refresh"></ion-icon>
+                        <span>Jogar Novamente</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carta Final -->
+    <section id="carta" class="section carta">
+        <div class="section-bg carta-bg">
+            <div class="floating-petals" id="petals"></div>
+        </div>
+        <div class="container">
+            <div class="section-header light">
+                <div class="section-icon">
+                    <ion-icon name="mail-open"></ion-icon>
+                </div>
+                <h2>Minha Carta para Voce</h2>
+                <p>Palavras que vem do coracao</p>
+                <div class="section-line light"></div>
+            </div>
+            <div class="letter-wrapper">
+                <div class="letter-container glass-card-dark">
+                    <div class="letter-decoration">
+                        <ion-icon name="heart"></ion-icon>
+                    </div>
+                    <div class="letter-content">
+                        <p class="letter-greeting">Meu amor,</p>
+                        <p>Desde o dia em que te conheci, minha vida ganhou cores que eu nem sabia que existiam. Voce e a pessoa que faz meu coracao bater mais forte, que transforma dias comuns em momentos extraordinarios.</p>
+                        <p>Cada sorriso seu e um presente, cada abraco e um refugio. Com voce, descobri o verdadeiro significado do amor - aquele que e paciente, gentil e que cresce a cada dia.</p>
+                        <p>Obrigado por ser meu melhor amigo, meu confidente, meu amor. Obrigado por escolher construir essa historia ao meu lado. Prometo te amar hoje, amanha e por toda a eternidade.</p>
+                        <p class="letter-closing">Com todo meu amor,</p>
+                        <p class="letter-signature">Seu amor</p>
+                    </div>
+                    <div class="letter-seal">
+                        <ion-icon name="heart"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Area de Resposta -->
+    <section id="resposta" class="section resposta">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon">
+                    <ion-icon name="create"></ion-icon>
+                </div>
+                <h2>Sua Resposta</h2>
+                <p>Deixe aqui suas palavras de amor</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="response-container glass-card">
+                <div class="response-decoration">
+                    <ion-icon name="heart"></ion-icon>
+                </div>
+                <textarea id="responseText" placeholder="Escreva sua resposta aqui..."></textarea>
+                <div class="response-actions">
+                    <button class="response-btn secondary" id="clearResponse">
+                        <ion-icon name="trash-outline"></ion-icon>
+                        <span>Limpar</span>
+                    </button>
+                    <button class="response-btn primary" id="saveResponse">
+                        <ion-icon name="heart"></ion-icon>
+                        <span>Salvar com Amor</span>
+                    </button>
+                </div>
+                <div class="response-feedback" id="responseFeedback">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <span>Resposta salva com carinho!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-hearts">
+            <ion-icon name="heart"></ion-icon>
+            <ion-icon name="heart"></ion-icon>
+            <ion-icon name="heart"></ion-icon>
+        </div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <ion-icon name="heart"></ion-icon>
+                    <span>Nosso Amor</span>
+                </div>
+                <p>Feito com muito amor</p>
+                <div class="footer-hearts-line">
+                    <ion-icon name="heart"></ion-icon>
+                    <ion-icon name="heart"></ion-icon>
+                    <ion-icon name="heart"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
-
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-
-  </body>
+</body>
 </html>

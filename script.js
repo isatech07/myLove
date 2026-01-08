@@ -1,645 +1,1083 @@
-// DOM Ready
-document.addEventListener('DOMContentLoaded', function() {
-    // Floating Hearts
-    function createHeart() {
-        const heartsContainer = document.getElementById("heartsContainer");
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤";
-        heart.style.left = Math.random() * 100 + "%";
-        heart.style.animationDuration = Math.random() * 10 + 10 + "s";
-        heart.style.fontSize = Math.random() * 20 + 15 + "px";
-        heartsContainer.appendChild(heart);
+/* ========================================
+   MODERN ROMANTIC WEBSITE - SCRIPT.JS
+   Ultra-modern interactions and animations
+======================================== */
 
-        setTimeout(() => {
-            heart.remove();
-        }, 15000);
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize all modules
+  Navigation.init()
+  FloatingHearts.init()
+  CursorTrail.init()
+  ScrollAnimations.init()
+  Carousel.init()
+  MusicPlayer.init()
+  VideoModal.init()
+  Countdown.init()
+  Quiz.init()
+  ResponseArea.init()
+  ParallaxEffects.init()
+  Petals.init()
+})
+
+/* ========================================
+   NAVIGATION
+======================================== */
+const Navigation = {
+  init() {
+    this.navbar = document.querySelector(".navbar")
+    this.navToggle = document.querySelector(".nav-toggle")
+    this.navLinks = document.querySelector(".nav-links")
+
+    if (!this.navbar) return
+
+    this.bindEvents()
+  },
+
+  bindEvents() {
+    // Mobile menu toggle
+    this.navToggle.addEventListener("click", () => {
+      this.navToggle.classList.toggle("active")
+      this.navLinks.classList.toggle("active")
+    })
+
+    // Close menu on link click
+    this.navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        this.navToggle.classList.remove("active")
+        this.navLinks.classList.remove("active")
+      })
+    })
+
+    // Scroll effect
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        this.navbar.classList.add("scrolled")
+      } else {
+        this.navbar.classList.remove("scrolled")
+      }
+    })
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", (e) => {
+        e.preventDefault()
+        const target = document.querySelector(anchor.getAttribute("href"))
+        if (target) {
+          const offset = 80
+          const position = target.getBoundingClientRect().top + window.pageYOffset - offset
+          window.scrollTo({ top: position, behavior: "smooth" })
+        }
+      })
+    })
+  },
+}
+
+/* ========================================
+   FLOATING HEARTS BACKGROUND
+======================================== */
+const FloatingHearts = {
+  container: null,
+
+  init() {
+    this.container = document.getElementById("floatingHearts")
+    if (!this.container) return
+
+    this.createHearts()
+    setInterval(() => this.createHeart(), 3000)
+  },
+
+  createHearts() {
+    for (let i = 0; i < 15; i++) {
+      setTimeout(() => this.createHeart(), i * 500)
     }
+  },
 
-    // Create hearts periodically
-    setInterval(createHeart, 2000);
+  createHeart() {
+    const heart = document.createElement("div")
+    heart.className = "heart"
+    heart.innerHTML = '<ion-icon name="heart"></ion-icon>'
 
-    // Scroll reveal for timeline
+    const size = Math.random() * 20 + 10
+    const left = Math.random() * 100
+    const duration = Math.random() * 15 + 15
+    const delay = Math.random() * 5
+
+    heart.style.cssText = `
+      left: ${left}%;
+      font-size: ${size}px;
+      animation-duration: ${duration}s;
+      animation-delay: ${delay}s;
+    `
+
+    this.container.appendChild(heart)
+
+    setTimeout(() => heart.remove(), (duration + delay) * 1000)
+  },
+}
+
+/* ========================================
+   CURSOR TRAIL
+======================================== */
+const CursorTrail = {
+  container: null,
+  lastX: 0,
+  lastY: 0,
+  throttle: false,
+
+  init() {
+    this.container = document.getElementById("cursorTrail")
+    if (!this.container || window.innerWidth < 768) return
+
+    document.addEventListener("mousemove", (e) => this.handleMove(e))
+  },
+
+  handleMove(e) {
+    if (this.throttle) return
+    this.throttle = true
+
+    setTimeout(() => {
+      this.throttle = false
+    }, 50)
+
+    const distance = Math.hypot(e.clientX - this.lastX, e.clientY - this.lastY)
+    if (distance < 30) return
+
+    this.lastX = e.clientX
+    this.lastY = e.clientY
+
+    if (Math.random() > 0.7) {
+      this.createHeart(e.clientX, e.clientY)
+    }
+  },
+
+  createHeart(x, y) {
+    const heart = document.createElement("div")
+    heart.className = "cursor-heart"
+    heart.innerHTML = '<ion-icon name="heart"></ion-icon>'
+    heart.style.cssText = `
+      left: ${x}px;
+      top: ${y}px;
+      font-size: ${Math.random() * 12 + 8}px;
+    `
+
+    this.container.appendChild(heart)
+    setTimeout(() => heart.remove(), 1000)
+  },
+}
+
+/* ========================================
+   SCROLL ANIMATIONS
+======================================== */
+const ScrollAnimations = {
+  init() {
     const observerOptions = {
-        threshold: 0.2,
-        rootMargin: "0px 0px -100px 0px",
-    };
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px",
+    }
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-            }
-        });
-    }, observerOptions);
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible")
 
-    document.querySelectorAll("[data-reveal]").forEach((el) => {
-        observer.observe(el);
-    });
+          // Update timeline progress
+          if (entry.target.classList.contains("timeline-item")) {
+            this.updateTimelineProgress()
+          }
+        }
+      })
+    }, observerOptions)
 
-    // Smooth scroll for hero indicator
-    document.querySelector(".scroll-indicator").addEventListener("click", () => {
-        document.getElementById("timeline").scrollIntoView({ behavior: "smooth" });
-    });
+    // Observe elements
+    document.querySelectorAll(".timeline-item, .video-card, .section-header").forEach((el) => {
+      observer.observe(el)
+    })
+  },
 
-    // Audio Banner Carousel
-    const audioBannerTrack = document.getElementById("audioBannerTrack");
-    const audioBannerSlides = document.querySelectorAll(".audio-banner-slide");
-    const audioBannerIndicators = document.querySelectorAll(".indicator");
-    const audioBannerPrev = document.getElementById("audioBannerPrev");
-    const audioBannerNext = document.getElementById("audioBannerNext");
-    const audioPlayBtns = document.querySelectorAll(".audio-banner-play-btn");
+  updateTimelineProgress() {
+    const timeline = document.querySelector(".timeline")
+    const progress = document.querySelector(".timeline-progress")
+    if (!timeline || !progress) return
+
+    const items = document.querySelectorAll(".timeline-item")
+    const visibleItems = document.querySelectorAll(".timeline-item.visible")
+    const percentage = (visibleItems.length / items.length) * 100
+
+    progress.style.height = `${percentage}%`
+  },
+}
+
+/* ========================================
+   CAROUSEL
+======================================== */
+const Carousel = {
+  track: null,
+  slides: null,
+  currentIndex: 0,
+  touchStartX: 0,
+  touchEndX: 0,
+  autoPlayInterval: null,
+
+  init() {
+    this.track = document.querySelector(".carousel-track")
+    this.slides = document.querySelectorAll(".carousel-slide")
+    this.prevBtn = document.querySelector(".carousel-btn.prev")
+    this.nextBtn = document.querySelector(".carousel-btn.next")
+    this.indicatorsContainer = document.querySelector(".carousel-indicators")
+    this.currentSlideEl = document.getElementById("currentSlide")
+    this.totalSlidesEl = document.getElementById("totalSlides")
+
+    if (!this.track || !this.slides.length) return
+
+    this.createIndicators()
+    this.bindEvents()
+    this.updateCounter()
+    this.startAutoPlay()
+  },
+
+  createIndicators() {
+    this.slides.forEach((_, index) => {
+      const indicator = document.createElement("button")
+      indicator.classList.add("indicator")
+      if (index === 0) indicator.classList.add("active")
+      indicator.setAttribute("aria-label", `Slide ${index + 1}`)
+      indicator.addEventListener("click", () => this.goToSlide(index))
+      this.indicatorsContainer.appendChild(indicator)
+    })
+
+    this.indicators = this.indicatorsContainer.querySelectorAll(".indicator")
+  },
+
+  bindEvents() {
+    this.prevBtn.addEventListener("click", () => this.prev())
+    this.nextBtn.addEventListener("click", () => this.next())
+
+    // Touch events
+    this.track.addEventListener(
+      "touchstart",
+      (e) => {
+        this.touchStartX = e.changedTouches[0].screenX
+      },
+      { passive: true },
+    )
+
+    this.track.addEventListener(
+      "touchend",
+      (e) => {
+        this.touchEndX = e.changedTouches[0].screenX
+        this.handleSwipe()
+      },
+      { passive: true },
+    )
+
+    // Pause autoplay on hover
+    const container = document.querySelector(".carousel-container")
+    container.addEventListener("mouseenter", () => this.stopAutoPlay())
+    container.addEventListener("mouseleave", () => this.startAutoPlay())
+  },
+
+  goToSlide(index) {
+    this.currentIndex = index
+    this.track.style.transform = `translateX(-${index * 100}%)`
+    this.updateIndicators()
+    this.updateCounter()
+  },
+
+  next() {
+    this.currentIndex = (this.currentIndex + 1) % this.slides.length
+    this.goToSlide(this.currentIndex)
+  },
+
+  prev() {
+    this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length
+    this.goToSlide(this.currentIndex)
+  },
+
+  updateIndicators() {
+    this.indicators.forEach((indicator, index) => {
+      indicator.classList.toggle("active", index === this.currentIndex)
+    })
+  },
+
+  updateCounter() {
+    if (this.currentSlideEl) {
+      this.currentSlideEl.textContent = String(this.currentIndex + 1).padStart(2, "0")
+    }
+    if (this.totalSlidesEl) {
+      this.totalSlidesEl.textContent = String(this.slides.length).padStart(2, "0")
+    }
+  },
+
+  handleSwipe() {
+    const diff = this.touchStartX - this.touchEndX
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        this.next()
+      } else {
+        this.prev()
+      }
+    }
+  },
+
+  startAutoPlay() {
+    this.stopAutoPlay()
+    this.autoPlayInterval = setInterval(() => this.next(), 5000)
+  },
+
+  stopAutoPlay() {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval)
+    }
+  },
+}
+
+/* ========================================
+   MUSIC PLAYER
+======================================== */
+const MusicPlayer = {
+  playlist: [
+    { 
+      title: "Best Part", 
+      artist: "Daniel Caesar", 
+      duration: "3:31", 
+      cover: "/img/capa_get-you.png",
+      file: "/audio/Best Part - Daniel Caesar.mp3"
+    },
+    { 
+      title: "Get You", 
+      artist: "Daniel Caesar", 
+      duration: "4:29", 
+      cover: "/img/capa_get-you.png",
+      file: "/audio/Get You-Daniel Caesar.mp3"
+    },
+    { 
+      title: "Mirrors", 
+      artist: "Justin Timberlake", 
+      duration: "4:36", 
+      cover: "/img/capa_mirrors.png",
+      file: "/audio/Mirrors-Justin Timberlake.mp3"
+    },
+    {
+      title: "Afrodite",
+      artist: "Delacruz e Iza",
+      duration: "4:45",
+      cover: "/img/capa_afrodite.png",
+      file: "/audio/afrodite - Delacruz e Iza.mp3"
+    },
+    { 
+      title: "Aliança", 
+      artist: "Tribalhistas", 
+      duration: "3:32", 
+      cover: "/img/capa_alianças.png",
+      file: "/audio/Aliança - Tribalistas.mp3.mp3"
+    },
+    {
+      title: " A Thousand Years",
+      artist: "Christina Perri",
+      duration: "3:01",
+      cover: "/img/capa_a-thousand-years.png",
+      file: "/audio/Christina Perri - A Thousand Years.mp3"
+    },
+  ],
+  currentTrack: 0,
+  isPlaying: false,
+  isShuffle: false,
+  isRepeat: false,
+  volume: 0.7,
+  progressInterval: null,
+
+  elements: {},
+
+  init() {
+    this.elements = {
+      albumArt: document.getElementById("albumArt"),
+      songTitle: document.getElementById("songTitle"),
+      songArtist: document.getElementById("songArtist"),
+      playBtn: document.getElementById("playBtn"),
+      playIcon: document.getElementById("playIcon"),
+      prevBtn: document.getElementById("prevBtn"),
+      nextBtn: document.getElementById("nextBtn"),
+      shuffleBtn: document.getElementById("shuffleBtn"),
+      repeatBtn: document.getElementById("repeatBtn"),
+      progressFill: document.getElementById("progressFill"),
+      progressHandle: document.getElementById("progressHandle"),
+      progressBar: document.getElementById("progressBar"),
+      currentTime: document.getElementById("currentTime"),
+      duration: document.getElementById("duration"),
+      playlistTracks: document.getElementById("playlistTracks"),
+      equalizer: document.getElementById("equalizer"),
+      volumeBar: document.getElementById("volumeBar"),
+      volumeFill: document.getElementById("volumeFill"),
+      volumeIcon: document.getElementById("volumeIcon"),
+    }
+
+    this.audio = document.getElementById('audioPlayer')
     
-    let currentAudioSlide = 0;
-    let currentPlayingAudio = null;
+    if (!this.elements.playlistTracks) return
 
-    function updateAudioBanner() {
-        // Move track
-        audioBannerTrack.style.transform = `translateX(-${currentAudioSlide * 100}%)`;
-        
-        // Update indicators
-        audioBannerIndicators.forEach((indicator, index) => {
-            indicator.classList.toggle("active", index === currentAudioSlide);
-        });
-        
-        // Update slides
-        audioBannerSlides.forEach((slide, index) => {
-            slide.classList.toggle("active", index === currentAudioSlide);
-        });
-        
-        // NÃO PARA o áudio quando muda de slide - apenas atualiza visualmente
+    this.audio.volume = this.volume
+    this.updateVolumeDisplay()
+    this.renderPlaylist()
+    this.loadTrack()
+    this.bindEvents()
+  },
+
+  renderPlaylist() {
+    this.elements.playlistTracks.innerHTML = this.playlist
+      .map(
+        (track, index) => `
+      <li class="${index === this.currentTrack ? "active" : ""}" data-index="${index}">
+        <span class="track-number">${index + 1}</span>
+        <ion-icon name="musical-note" class="playing-indicator"></ion-icon>
+        <div class="track-info">
+          <span class="track-title">${track.title}</span>
+          <span class="track-artist">${track.artist}</span>
+        </div>
+        <span class="track-duration">${track.duration}</span>
+      </li>
+    `
+      )
+      .join("")
+
+    this.elements.playlistTracks.querySelectorAll("li").forEach((li) => {
+      li.addEventListener("click", () => {
+        this.currentTrack = Number.parseInt(li.dataset.index)
+        this.loadTrack()
+        this.play()
+      })
+    })
+  },
+
+  loadTrack() {
+    const track = this.playlist[this.currentTrack]
+    
+    // Atualizar interface
+    this.elements.albumArt.src = track.cover
+    this.elements.songTitle.textContent = track.title
+    this.elements.songArtist.textContent = track.artist
+    this.elements.duration.textContent = track.duration
+    this.elements.currentTime.textContent = "0:00"
+    
+    // Atualizar progresso
+    this.elements.progressFill.style.width = "0%"
+    this.elements.progressHandle.style.left = "0%"
+    
+    // Atualizar lista
+    this.elements.playlistTracks.querySelectorAll("li").forEach((li, index) => {
+      li.classList.toggle("active", index === this.currentTrack)
+    })
+    
+    // Carregar áudio
+    this.audio.src = track.file
+    
+    // Configurar evento para quando o áudio estiver pronto
+    this.audio.addEventListener('loadedmetadata', () => {
+      this.updateDisplay()
+    }, { once: true })
+  },
+
+  updateDisplay() {
+    const track = this.playlist[this.currentTrack]
+    this.elements.duration.textContent = this.formatTime(this.audio.duration || 0)
+  },
+
+  play() {
+    if (!this.audio.src) return
+    
+    this.audio.play()
+      .then(() => {
+        this.isPlaying = true
+        this.elements.playIcon.setAttribute("name", "pause")
+        this.elements.equalizer.classList.add("playing")
+        this.startProgress()
+      })
+      .catch(error => {
+        console.error("Erro ao reproduzir música:", error)
+        this.isPlaying = false
+        this.elements.playIcon.setAttribute("name", "play")
+        this.elements.equalizer.classList.remove("playing")
+      })
+  },
+
+  pause() {
+    this.audio.pause()
+    this.isPlaying = false
+    this.elements.playIcon.setAttribute("name", "play")
+    this.elements.equalizer.classList.remove("playing")
+    this.stopProgress()
+  },
+
+  togglePlay() {
+    if (this.isPlaying) {
+      this.pause()
+    } else {
+      this.play()
     }
+  },
 
-    // Audio banner navigation
-    audioBannerPrev.addEventListener("click", () => {
-        currentAudioSlide = (currentAudioSlide - 1 + audioBannerSlides.length) % audioBannerSlides.length;
-        updateAudioBanner();
-    });
-
-    audioBannerNext.addEventListener("click", () => {
-        currentAudioSlide = (currentAudioSlide + 1) % audioBannerSlides.length;
-        updateAudioBanner();
-    });
-
-    // Audio play functionality - NÃO PARA quando muda de slide
-    audioPlayBtns.forEach(btn => {
-        btn.addEventListener("click", function() {
-            const slide = this.closest('.audio-banner-slide');
-            const audio = slide.querySelector('.banner-audio');
-            
-            // Se já está tocando este áudio, apenas pausa/despausa
-            if (currentPlayingAudio === audio) {
-                if (audio.paused) {
-                    audio.play();
-                    this.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-                } else {
-                    audio.pause();
-                    this.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                }
-            } else {
-                // Para qualquer áudio que esteja tocando atualmente
-                if (currentPlayingAudio && !currentPlayingAudio.paused) {
-                    currentPlayingAudio.pause();
-                    // Atualiza o botão do áudio anterior
-                    const prevBtn = currentPlayingAudio.closest('.audio-banner-slide').querySelector('.audio-banner-play-btn');
-                    if (prevBtn) {
-                        prevBtn.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                    }
-                }
-                
-                // Toca o novo áudio
-                audio.play();
-                this.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-                currentPlayingAudio = audio;
-            }
-        });
-    });
-
-    // Atualiza botões quando áudio termina
-    document.querySelectorAll('.banner-audio').forEach(audio => {
-        audio.addEventListener('ended', function() {
-            const btn = this.closest('.audio-banner-slide').querySelector('.audio-banner-play-btn');
-            if (btn) {
-                btn.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-            }
-            currentPlayingAudio = null;
-        });
-    });
-
-    // Auto-advance audio banner
-    setInterval(() => {
-        currentAudioSlide = (currentAudioSlide + 1) % audioBannerSlides.length;
-        updateAudioBanner();
-    }, 8000);
-
-    /* ==============================
-    GALERIA CARROSSEL
-    ============================== */
-
-    const track = document.querySelector('.gallery-track');
-    const cards = document.querySelectorAll('.gallery-card');
-    const prevBtn = document.querySelector('.nav-btn.prev');
-    const nextBtn = document.querySelector('.nav-btn.next');
-    const dots = document.querySelectorAll('.gallery-dots span');
-
-    let currentIndex = 0;
-
-    function updateGallery() {
-    const cardWidth = cards[0].offsetWidth + 32; // gap de 2rem
-    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-
-    cards.forEach((card, index) => {
-        card.classList.toggle('active', index === currentIndex);
-    });
-
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-    });
+  next() {
+    if (this.isShuffle) {
+      let newTrack
+      do {
+        newTrack = Math.floor(Math.random() * this.playlist.length)
+      } while (newTrack === this.currentTrack && this.playlist.length > 1)
+      this.currentTrack = newTrack
+    } else {
+      this.currentTrack = (this.currentTrack + 1) % this.playlist.length
     }
+    
+    this.loadTrack()
+    
+    // Se estava tocando antes, tocar a nova música
+    if (this.isPlaying) {
+      // Pequeno delay para garantir que o áudio foi carregado
+      setTimeout(() => {
+        this.play()
+      }, 100)
+    }
+  },
 
-    nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % cards.length;
-    updateGallery();
-    });
+  prev() {
+    // Se já passou mais de 3 segundos da música atual, voltar ao início
+    if (this.audio.currentTime > 3) {
+      this.audio.currentTime = 0
+      this.updateProgress()
+    } else {
+      // Ir para música anterior
+      if (this.isShuffle) {
+        let newTrack
+        do {
+          newTrack = Math.floor(Math.random() * this.playlist.length)
+        } while (newTrack === this.currentTrack && this.playlist.length > 1)
+        this.currentTrack = newTrack
+      } else {
+        this.currentTrack = (this.currentTrack - 1 + this.playlist.length) % this.playlist.length
+      }
+      
+      this.loadTrack()
+      
+      // Se estava tocando antes, tocar a nova música
+      if (this.isPlaying) {
+        setTimeout(() => {
+          this.play()
+        }, 100)
+      }
+    }
+  },
 
-    prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-    updateGallery();
-    });
+  startProgress() {
+    this.stopProgress()
+    this.progressInterval = setInterval(() => {
+      this.updateProgress()
+    }, 100)
+  },
 
-    dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        currentIndex = index;
-        updateGallery();
-    });
-    });
+  stopProgress() {
+    if (this.progressInterval) {
+      clearInterval(this.progressInterval)
+      this.progressInterval = null
+    }
+  },
 
-    window.addEventListener('load', updateGallery);
-    window.addEventListener('resize', updateGallery);
+  updateProgress() {
+    if (!this.audio.duration || isNaN(this.audio.duration)) return
+    
+    const currentTime = this.audio.currentTime
+    const duration = this.audio.duration
+    const percent = (currentTime / duration) * 100
+    
+    this.elements.progressFill.style.width = `${percent}%`
+    this.elements.progressHandle.style.left = `${percent}%`
+    this.elements.currentTime.textContent = this.formatTime(currentTime)
+    
+    // Se a música terminou
+    if (currentTime >= duration) {
+      if (this.isRepeat) {
+        this.audio.currentTime = 0
+        this.play()
+      } else {
+        this.next()
+      }
+    }
+  },
 
-// Vídeos - modal
-const videoCards = document.querySelectorAll('.video-card');
-const modal = document.getElementById('videoModal');
-const modalVideo = document.getElementById('modalVideo');
-const closeModal = document.querySelector('.close-modal');
+  seekTo(percent) {
+    if (this.audio.duration && !isNaN(this.audio.duration)) {
+      const time = percent * this.audio.duration
+      this.audio.currentTime = time
+      this.updateProgress()
+    }
+  },
 
-videoCards.forEach(card => {
-  card.addEventListener('click', () => {
-    const video = card.querySelector('video');
-    const source = video.querySelector('source').src;
+  formatTime(seconds) {
+    const mins = Math.floor(seconds / 60)
+    const secs = Math.floor(seconds % 60)
+    return `${mins}:${secs.toString().padStart(2, "0")}`
+  },
 
-    modalVideo.src = source;
-    modal.classList.add('active');
-    modalVideo.play();
-  });
-});
+  setVolume(percent) {
+    this.volume = percent
+    this.audio.volume = this.volume
+    this.updateVolumeDisplay()
+  },
 
-closeModal.addEventListener('click', () => {
-  modal.classList.remove('active');
-  modalVideo.pause();
-  modalVideo.src = '';
-});
+  updateVolumeDisplay() {
+    const percent = this.volume * 100
+    this.elements.volumeFill.style.width = `${percent}%`
+    
+    if (this.volume === 0) {
+      this.elements.volumeIcon.setAttribute("name", "volume-mute")
+    } else if (this.volume < 0.5) {
+      this.elements.volumeIcon.setAttribute("name", "volume-low")
+    } else {
+      this.elements.volumeIcon.setAttribute("name", "volume-high")
+    }
+  },
 
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.classList.remove('active');
-    modalVideo.pause();
-    modalVideo.src = '';
+  bindEvents() {
+    // Botões de controle
+    this.elements.playBtn.addEventListener("click", () => this.togglePlay())
+    this.elements.nextBtn.addEventListener("click", () => this.next())
+    this.elements.prevBtn.addEventListener("click", () => this.prev())
+
+    // Shuffle
+    this.elements.shuffleBtn.addEventListener("click", () => {
+      this.isShuffle = !this.isShuffle
+      this.elements.shuffleBtn.classList.toggle("active", this.isShuffle)
+    })
+
+    // Repeat
+    this.elements.repeatBtn.addEventListener("click", () => {
+      this.isRepeat = !this.isRepeat
+      this.elements.repeatBtn.classList.toggle("active", this.isRepeat)
+    })
+
+    // Barra de progresso
+    this.elements.progressBar.addEventListener("click", (e) => {
+      const rect = this.elements.progressBar.getBoundingClientRect()
+      const percent = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1)
+      this.seekTo(percent)
+    })
+
+    // Controle de volume
+    this.elements.volumeBar.addEventListener("click", (e) => {
+      const rect = this.elements.volumeBar.getBoundingClientRect()
+      const percent = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1)
+      this.setVolume(percent)
+    })
+
+    // Eventos do áudio
+    this.audio.addEventListener('loadedmetadata', () => {
+      this.updateDisplay()
+    })
+
+    this.audio.addEventListener('ended', () => {
+      if (!this.isRepeat) {
+        this.next()
+      }
+    })
+
+    this.audio.addEventListener('error', (e) => {
+      console.error('Erro no áudio:', e)
+      this.pause()
+    })
+
+    this.audio.addEventListener('play', () => {
+      this.isPlaying = true
+      this.elements.playIcon.setAttribute("name", "pause")
+      this.elements.equalizer.classList.add("playing")
+      this.startProgress()
+    })
+
+    this.audio.addEventListener('pause', () => {
+      this.isPlaying = false
+      this.elements.playIcon.setAttribute("name", "play")
+      this.elements.equalizer.classList.remove("playing")
+      this.stopProgress()
+    })
   }
-});
+}
 
+// Inicializar quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', () => {
+  MusicPlayer.init()
+})
 
+/* ========================================
+   VIDEO MODAL
+======================================== */
+const VideoModal = {
+  modal: null,
 
-    // Main Music Player - FUNCIONA INDEPENDENTEMENTE
-    const audioPlayer = document.getElementById("audioPlayer");
-    const playBtn = document.getElementById("playBtn");
-    const progressBar = document.getElementById("progressBar");
-    const progressFill = document.getElementById("progressFill");
-    const currentTimeEl = document.getElementById("currentTime");
-    const totalTimeEl = document.getElementById("totalTime");
-    const songTitle = document.getElementById("songTitle");
-    const songArtist = document.getElementById("songArtist");
-    const musicPlayer = document.querySelector(".music-player");
-    const albumArt = document.getElementById("albumArt");
+  init() {
+    this.modal = document.getElementById("videoModal")
+    this.closeBtn = document.getElementById("closeModal")
+    this.videoCards = document.querySelectorAll(".video-card")
 
-    
-    let isMainPlayerPlaying = false;
+    if (!this.modal) return
 
-    // Playlist
-    const playlist = [
-        {
-            src: "audio/Best Part - Daniel Caesar.mp3",
-            title: "Best Part",
-            artist: "Daniel Caesar",
-            cover: "img/Best Part (feat_ H.E.R.).jpg"
-        },
-        {
-            src: "audio/Get You-Daniel Caesar.mp3",
-            title: "Get You",
-            artist: "Daniel Caesar",
-            cover: "img/Get You.jpg"
-        },
-        {
-            src: "audio/Mirrors-Justin Timberlake.mp3",
-            title: "Mirrors",
-            artist: "Justin Timberlake",
-            cover: "img/Mirrors.jpg"
-        }
-    ];
+    this.bindEvents()
+  },
 
+  bindEvents() {
+    this.videoCards.forEach((card) => {
+      card.addEventListener("click", () => this.open())
+    })
 
-    let currentSongIndex = 0;
+    this.closeBtn.addEventListener("click", () => this.close())
 
-    // Format time
-    function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    this.modal.querySelector(".modal-backdrop").addEventListener("click", () => this.close())
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") this.close()
+    })
+  },
+
+  open() {
+    this.modal.classList.add("active")
+    document.body.style.overflow = "hidden"
+  },
+
+  close() {
+    this.modal.classList.remove("active")
+    document.body.style.overflow = ""
+  },
+}
+
+/* ========================================
+   COUNTDOWN
+======================================== */
+const Countdown = {
+  targetDate: new Date("January 28, 2027 00:00:00").getTime(),
+  elements: {},
+
+  init() {
+    this.elements = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds"),
     }
 
-    // Update progress
-    function updateProgress() {
-        const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-        progressFill.style.width = `${percent}%`;
-        currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
-        
-        // Update visualizer
-        updateVisualizer();
+    if (!this.elements.days) return
+
+    this.update()
+    setInterval(() => this.update(), 1000)
+    this.createParticles()
+  },
+
+  update() {
+    const now = new Date().getTime()
+    const distance = this.targetDate - now
+
+    if (distance < 0) {
+      this.setDigits(this.elements.days, "000")
+      this.setDigits(this.elements.hours, "00")
+      this.setDigits(this.elements.minutes, "00")
+      this.setDigits(this.elements.seconds, "00")
+      return
     }
 
-    // Update visualizer
-    function updateVisualizer() {
-        const bars = document.querySelectorAll('.music-visualizer .bar');
-        bars.forEach(bar => {
-            const randomHeight = Math.random() * 60 + 20;
-            bar.style.height = `${randomHeight}%`;
-        });
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+    this.setDigits(this.elements.days, days.toString().padStart(3, "0"))
+    this.setDigits(this.elements.hours, hours.toString().padStart(2, "0"))
+    this.setDigits(this.elements.minutes, minutes.toString().padStart(2, "0"))
+    this.setDigits(this.elements.seconds, seconds.toString().padStart(2, "0"))
+  },
+
+  setDigits(container, value) {
+    const digits = container.querySelectorAll(".digit")
+    const chars = value.split("")
+
+    digits.forEach((digit, index) => {
+      if (digit.textContent !== chars[index]) {
+        digit.classList.add("flip")
+        digit.textContent = chars[index]
+        setTimeout(() => digit.classList.remove("flip"), 300)
+      }
+    })
+  },
+
+  createParticles() {
+    const container = document.getElementById("countdownParticles")
+    if (!container) return
+
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement("div")
+      particle.style.cssText = `
+        position: absolute;
+        width: ${Math.random() * 4 + 2}px;
+        height: ${Math.random() * 4 + 2}px;
+        background: rgba(232, 180, 184, ${Math.random() * 0.5 + 0.2});
+        border-radius: 50%;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        animation: particleFloat ${Math.random() * 10 + 10}s linear infinite;
+      `
+      container.appendChild(particle)
+    }
+  },
+}
+
+/* ========================================
+   QUIZ
+======================================== */
+const Quiz = {
+  questions: [
+    {
+      question: "Onde foi nosso primeiro encontro?",
+      options: ["Na praia", "Em um cafe", "No parque", "Na faculdade"],
+      correct: 1,
+    },
+    {
+      question: "Qual e a nossa musica favorita?",
+      options: ["Perfect", "All of Me", "Thinking Out Loud", "A Thousand Years"],
+      correct: 0,
+    },
+    {
+      question: "Qual foi nosso primeiro filme juntos?",
+      options: ["Titanic", "A Culpa e das Estrelas", "Diario de uma Paixao", "La La Land"],
+      correct: 2,
+    },
+    {
+      question: "Qual a comida favorita do casal?",
+      options: ["Pizza", "Sushi", "Hamburguer", "Comida italiana"],
+      correct: 3,
+    },
+    {
+      question: "Onde foi nossa primeira viagem juntos?",
+      options: ["Gramado", "Florianopolis", "Rio de Janeiro", "Buzios"],
+      correct: 1,
+    },
+  ],
+  currentQuestion: 0,
+  score: 0,
+  answered: false,
+  elements: {},
+
+  init() {
+    this.elements = {
+      questionText: document.getElementById("questionText"),
+      questionNumber: document.getElementById("questionNumber"),
+      options: document.getElementById("quizOptions"),
+      progress: document.getElementById("quizProgress"),
+      progressText: document.getElementById("quizProgressText"),
+      result: document.getElementById("quizResult"),
+      resultTitle: document.getElementById("resultTitle"),
+      resultText: document.getElementById("resultText"),
+      resultIcon: document.getElementById("resultIcon"),
+      restartBtn: document.getElementById("restartQuiz"),
+      questionContainer: document.getElementById("quizQuestion"),
     }
 
-    // Set progress on click
-    progressBar.addEventListener('click', function(e) {
-        const width = this.clientWidth;
-        const clickX = e.offsetX;
-        const duration = audioPlayer.duration;
-        
-        audioPlayer.currentTime = (clickX / width) * duration;
-    });
+    if (!this.elements.questionText) return
 
-    // Play/pause function - SOMENTE para o player principal
-    function toggleMainPlayer() {
-        if (isMainPlayerPlaying) {
-            audioPlayer.pause();
-            playBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-        } else {
-            // Para qualquer áudio do banner que esteja tocando
-            if (currentPlayingAudio && !currentPlayingAudio.paused) {
-                currentPlayingAudio.pause();
-                const bannerBtn = currentPlayingAudio.closest('.audio-banner-slide').querySelector('.audio-banner-play-btn');
-                if (bannerBtn) {
-                    bannerBtn.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                }
-                currentPlayingAudio = null;
-            }
-            
-            // Para qualquer voice message que esteja tocando
-            document.querySelectorAll('.voice-audio').forEach(audio => {
-                if (!audio.paused) {
-                    audio.pause();
-                    const voiceBtn = audio.closest('.voice-message-card').querySelector('.voice-play-btn');
-                    if (voiceBtn) {
-                        voiceBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                    }
-                }
-            });
-            
-            audioPlayer.play();
-            playBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-        }
-        isMainPlayerPlaying = !isMainPlayerPlaying;
-        musicPlayer.classList.toggle("playing", isMainPlayerPlaying);
+    this.renderQuestion()
+    this.elements.restartBtn.addEventListener("click", () => this.restart())
+  },
+
+  renderQuestion() {
+    const q = this.questions[this.currentQuestion]
+    this.elements.questionText.textContent = q.question
+    this.elements.questionNumber.textContent = String(this.currentQuestion + 1).padStart(2, "0")
+
+    this.elements.options.innerHTML = q.options
+      .map(
+        (option, index) => `
+      <button class="quiz-option" data-index="${index}">
+        <ion-icon name="radio-button-off-outline"></ion-icon>
+        <span>${option}</span>
+      </button>
+    `,
+      )
+      .join("")
+
+    const percent = ((this.currentQuestion + 1) / this.questions.length) * 100
+    this.elements.progress.style.width = `${percent}%`
+    this.elements.progressText.textContent = `Pergunta ${this.currentQuestion + 1} de ${this.questions.length}`
+
+    this.elements.options.querySelectorAll(".quiz-option").forEach((btn) => {
+      btn.addEventListener("click", () => this.answer(Number.parseInt(btn.dataset.index)))
+    })
+
+    this.answered = false
+  },
+
+  answer(index) {
+    if (this.answered) return
+    this.answered = true
+
+    const q = this.questions[this.currentQuestion]
+    const options = this.elements.options.querySelectorAll(".quiz-option")
+
+    options.forEach((btn, i) => {
+      btn.classList.add("disabled")
+      const icon = btn.querySelector("ion-icon")
+
+      if (i === q.correct) {
+        btn.classList.add("correct")
+        icon.setAttribute("name", "checkmark-circle")
+      } else if (i === index && i !== q.correct) {
+        btn.classList.add("wrong")
+        icon.setAttribute("name", "close-circle")
+      }
+    })
+
+    if (index === q.correct) {
+      this.score++
     }
 
-    // Load song
-    function loadSong(index) {
-        const song = playlist[index];
+    setTimeout(() => {
+      this.currentQuestion++
+      if (this.currentQuestion < this.questions.length) {
+        this.renderQuestion()
+      } else {
+        this.showResult()
+      }
+    }, 1500)
+  },
 
-        audioPlayer.src = song.src;
-        songTitle.textContent = song.title;
-        songArtist.textContent = song.artist;
+  showResult() {
+    this.elements.questionContainer.style.display = "none"
+    this.elements.result.style.display = "block"
+    this.elements.result.classList.add("show")
 
-        // 🎵 TROCA DA CAPA
-        albumArt.src = song.cover;
+    const percentage = (this.score / this.questions.length) * 100
 
-        audioPlayer.addEventListener('loadedmetadata', () => {
-            totalTimeEl.textContent = formatTime(audioPlayer.duration);
-        });
+    if (percentage === 100) {
+      this.elements.resultIcon.setAttribute("name", "trophy")
+      this.elements.resultTitle.textContent = "Perfeito!"
+    } else if (percentage >= 60) {
+      this.elements.resultIcon.setAttribute("name", "happy")
+      this.elements.resultTitle.textContent = "Muito Bem!"
+    } else {
+      this.elements.resultIcon.setAttribute("name", "heart")
+      this.elements.resultTitle.textContent = "Continue Tentando!"
     }
 
+    this.elements.resultText.textContent = `Voce acertou ${this.score} de ${this.questions.length} perguntas!`
+  },
 
-    // Next song
-    function nextSong() {
-        currentSongIndex = (currentSongIndex + 1) % playlist.length;
-        loadSong(currentSongIndex);
-        if (isMainPlayerPlaying) {
-            audioPlayer.play();
-        }
+  restart() {
+    this.currentQuestion = 0
+    this.score = 0
+    this.elements.questionContainer.style.display = "block"
+    this.elements.result.style.display = "none"
+    this.elements.result.classList.remove("show")
+    this.renderQuestion()
+  },
+}
+
+/* ========================================
+   RESPONSE AREA
+======================================== */
+const ResponseArea = {
+  elements: {},
+
+  init() {
+    this.elements = {
+      textarea: document.getElementById("responseText"),
+      saveBtn: document.getElementById("saveResponse"),
+      clearBtn: document.getElementById("clearResponse"),
+      feedback: document.getElementById("responseFeedback"),
     }
 
-    // Previous song
-    function prevSong() {
-        currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
-        loadSong(currentSongIndex);
-        if (isMainPlayerPlaying) {
-            audioPlayer.play();
-        }
+    if (!this.elements.textarea) return
+
+    // Load saved response
+    const saved = localStorage.getItem("loveResponse")
+    if (saved) {
+      this.elements.textarea.value = saved
     }
 
-    // Event listeners for music player
-    playBtn.addEventListener("click", toggleMainPlayer);
-    document.getElementById("nextSong").addEventListener("click", nextSong);
-    document.getElementById("prevSong").addEventListener("click", prevSong);
+    this.elements.saveBtn.addEventListener("click", () => this.save())
+    this.elements.clearBtn.addEventListener("click", () => this.clear())
+  },
 
-    audioPlayer.addEventListener('timeupdate', updateProgress);
-    audioPlayer.addEventListener('ended', nextSong);
-
-    // Initialize first song
-    loadSong(currentSongIndex);
-
-    // Voice Messages - FUNCIONAM INDEPENDENTEMENTE
-    const voicePlayBtns = document.querySelectorAll('.voice-play-btn');
-    let currentPlayingVoice = null;
-
-    voicePlayBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const card = this.closest('.voice-message-card');
-            const audio = card.querySelector('.voice-audio');
-            const wave = card.querySelector('.voice-wave');
-            
-            // Se já está tocando este áudio
-            if (currentPlayingVoice === audio) {
-                if (audio.paused) {
-                    audio.play();
-                    this.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-                    wave.classList.add('playing');
-                } else {
-                    audio.pause();
-                    this.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                    wave.classList.remove('playing');
-                }
-            } else {
-                // Para o áudio anterior
-                if (currentPlayingVoice && !currentPlayingVoice.paused) {
-                    currentPlayingVoice.pause();
-                    const prevBtn = currentPlayingVoice.closest('.voice-message-card').querySelector('.voice-play-btn');
-                    if (prevBtn) {
-                        prevBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                        const prevWave = currentPlayingVoice.closest('.voice-message-card').querySelector('.voice-wave');
-                        prevWave.classList.remove('playing');
-                    }
-                }
-                
-                // Para o player principal se estiver tocando
-                if (isMainPlayerPlaying && !audioPlayer.paused) {
-                    audioPlayer.pause();
-                    playBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                    isMainPlayerPlaying = false;
-                    musicPlayer.classList.remove("playing");
-                }
-                
-                // Para o áudio do banner se estiver tocando
-                if (currentPlayingAudio && !currentPlayingAudio.paused) {
-                    currentPlayingAudio.pause();
-                    const bannerBtn = currentPlayingAudio.closest('.audio-banner-slide').querySelector('.audio-banner-play-btn');
-                    if (bannerBtn) {
-                        bannerBtn.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                    }
-                    currentPlayingAudio = null;
-                }
-                
-                // Toca o novo voice message
-                audio.play();
-                this.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-                wave.classList.add('playing');
-                currentPlayingVoice = audio;
-                
-                audio.addEventListener('ended', () => {
-                    this.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                    wave.classList.remove('playing');
-                    currentPlayingVoice = null;
-                }, { once: true });
-            }
-        });
-    });
-
-    // Letter
-    const letterEnvelope = document.getElementById("letterEnvelope");
-    const letterContent = document.getElementById("letterContent");
-    const letterText = document.getElementById("letterText");
-
-    const letterMessage = `Meu amor,
-
-Hoje completamos 2 anos juntos, e cada dia ao seu lado tem sido uma nova descoberta de felicidade. Você transformou minha vida de maneiras que eu nem imaginava serem possíveis.
-
-Obrigado por cada sorriso, cada abraço, cada momento compartilhado. Você é meu porto seguro, minha inspiração, meu amor verdadeiro.
-
-Que este seja apenas o começo de muitos e muitos anos ao seu lado. Te amo infinitamente!`;
-
-    let charIndex = 0;
-    let letterOpened = false;
-
-    letterEnvelope.addEventListener("click", () => {
-        if (!letterOpened) {
-            letterOpened = true;
-            letterEnvelope.classList.add("open");
-
-            setTimeout(() => {
-                letterEnvelope.style.display = "none";
-                letterContent.classList.add("visible");
-                typeWriter();
-                createSpecialHearts();
-            }, 800);
-        }
-    });
-
-    function typeWriter() {
-        if (charIndex < letterMessage.length) {
-            letterText.textContent += letterMessage.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeWriter, 30);
-        }
+  save() {
+    const text = this.elements.textarea.value.trim()
+    if (text) {
+      localStorage.setItem("loveResponse", text)
+      this.showFeedback()
     }
+  },
 
-    function createSpecialHearts() {
-        const container = document.querySelector(".floating-hearts-special");
-        setInterval(() => {
-            const heart = document.createElement("div");
-            heart.innerHTML = "❤️";
-            heart.style.position = "absolute";
-            heart.style.left = Math.random() * 100 + "%";
-            heart.style.bottom = "0";
-            heart.style.fontSize = "30px";
-            heart.style.animation = "floatUp 8s linear";
-            heart.style.opacity = "0.6";
-            container.appendChild(heart);
+  clear() {
+    this.elements.textarea.value = ""
+    localStorage.removeItem("loveResponse")
+  },
 
-            setTimeout(() => heart.remove(), 8000);
-        }, 500);
-    }
+  showFeedback() {
+    this.elements.feedback.classList.add("show")
+    setTimeout(() => {
+      this.elements.feedback.classList.remove("show")
+    }, 3000)
+  },
+}
 
-    // Countdown Timer
-    function updateCountdown() {
-        // Data do próximo aniversário (28 de Janeiro 2026)
-        const anniversaryDate = new Date('January 28, 2027 00:00:00').getTime();
-        const now = new Date().getTime();
-        const timeLeft = anniversaryDate - now;
+/* ========================================
+   PARALLAX EFFECTS
+======================================== */
+const ParallaxEffects = {
+  init() {
+    if (window.innerWidth < 768) return
 
-        if (timeLeft > 0) {
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            document.getElementById("countdownDays").textContent = days.toString().padStart(3, '0');
-            document.getElementById("countdownHours").textContent = hours.toString().padStart(2, '0');
-            document.getElementById("countdownMinutes").textContent = minutes.toString().padStart(2, '0');
-            document.getElementById("countdownSeconds").textContent = seconds.toString().padStart(2, '0');
-        } else {
-            // Se já passou, mostra mensagem
-            document.querySelector(".countdown-message").textContent = "Feliz 3º Aniversário! Te amo! ❤️";
-            document.querySelector(".countdown-display").style.display = "none";
-        }
-    }
-
-    // Update countdown every second
-    setInterval(updateCountdown, 1000);
-    updateCountdown(); // Initial call
-
-    // Quiz
-    let currentQuestion = 0;
-    let correctAnswers = 0;
-    const totalQuestions = 3;
-
-    document.querySelectorAll(".quiz-option").forEach((option) => {
-        option.addEventListener("click", function () {
-            const isCorrect = this.dataset.correct === "true";
-            const currentQuestionEl = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
-            const allOptions = currentQuestionEl.querySelectorAll(".quiz-option");
-
-            // Disable all options
-            allOptions.forEach((opt) => (opt.style.pointerEvents = "none"));
-
-            if (isCorrect) {
-                this.classList.add("correct");
-                correctAnswers++;
-
-                setTimeout(() => {
-                    currentQuestionEl.classList.add("hidden");
-                    currentQuestion++;
-
-                    if (currentQuestion < totalQuestions) {
-                        document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.remove("hidden");
-                    } else {
-                        if (correctAnswers === totalQuestions) {
-                            document.getElementById("quizComplete").classList.remove("hidden");
-                        }
-                    }
-                }, 1000);
-            } else {
-                this.classList.add("wrong");
-                setTimeout(() => {
-                    allOptions.forEach((opt) => {
-                        opt.style.pointerEvents = "auto";
-                        opt.classList.remove("wrong");
-                    });
-                }, 1000);
-            }
-        });
-    });
-
-    // Surprise Modal
-    document.getElementById("surpriseBtn").addEventListener("click", () => {
-        document.getElementById("surpriseModal").classList.remove("hidden");
-        document.getElementById("surpriseModal").classList.add("visible");
-        
-        // Create fireworks
-        createFireworks();
-    });
-
-    document.getElementById("closeModal").addEventListener("click", () => {
-        document.getElementById("surpriseModal").classList.remove("visible");
-        document.getElementById("surpriseModal").classList.add("hidden");
-    });
-
-    function createFireworks() {
-        const fireworksContainer = document.querySelector('.fireworks');
-        fireworksContainer.innerHTML = '';
-        
-        for (let i = 0; i < 15; i++) {
-            const firework = document.createElement('div');
-            firework.className = 'firework';
-            firework.style.left = `${Math.random() * 100}%`;
-            firework.style.animationDelay = `${Math.random() * 2}s`;
-            fireworksContainer.appendChild(firework);
-        }
-    }
-
-    // Parallax effect on scroll
     window.addEventListener("scroll", () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector(".hero");
-        if (hero) {
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-    });
+      const scrolled = window.pageYOffset
 
-    // Função para pausar TODOS os áudios (opcional - pode ser usada se quiser um botão global)
-    window.pauseAllAudio = function() {
-        // Pausa banner audio
-        if (currentPlayingAudio && !currentPlayingAudio.paused) {
-            currentPlayingAudio.pause();
-            const bannerBtn = currentPlayingAudio.closest('.audio-banner-slide').querySelector('.audio-banner-play-btn');
-            if (bannerBtn) {
-                bannerBtn.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-            }
-            currentPlayingAudio = null;
-        }
-        
-        // Pausa main player
-        if (isMainPlayerPlaying && !audioPlayer.paused) {
-            audioPlayer.pause();
-            playBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-            isMainPlayerPlaying = false;
-            musicPlayer.classList.remove("playing");
-        }
-        
-        // Pausa voice messages
-        if (currentPlayingVoice && !currentPlayingVoice.paused) {
-            currentPlayingVoice.pause();
-            const voiceBtn = currentPlayingVoice.closest('.voice-message-card').querySelector('.voice-play-btn');
-            if (voiceBtn) {
-                voiceBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                const voiceWave = currentPlayingVoice.closest('.voice-message-card').querySelector('.voice-wave');
-                voiceWave.classList.remove('playing');
-            }
-            currentPlayingVoice = null;
-        }
-        
-        // Pausa todos os outros voice messages
-        document.querySelectorAll('.voice-audio').forEach(audio => {
-            if (!audio.paused) {
-                audio.pause();
-                const btn = audio.closest('.voice-message-card').querySelector('.voice-play-btn');
-                if (btn) {
-                    btn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
-                }
-                const wave = audio.closest('.voice-message-card').querySelector('.voice-wave');
-                if (wave) {
-                    wave.classList.remove('playing');
-                }
-            }
-        });
-    };
+      // Hero parallax
+      const heroContent = document.querySelector(".hero-content")
+      if (heroContent) {
+        heroContent.style.transform = `translateY(${scrolled * 0.3}px)`
+        heroContent.style.opacity = 1 - scrolled / 600
+      }
 
-    console.log("[v2] Site romântico carregado com sucesso! ❤️");
-    console.log("As músicas NÃO param ao mudar de slide ou seção!");
-});
+      // Hero hearts parallax
+      const heroHearts = document.querySelectorAll(".heart-float")
+      heroHearts.forEach((heart, index) => {
+        const speed = (index + 1) * 0.05
+        heart.style.transform = `translateY(${scrolled * speed}px)`
+      })
+    })
+  },
+}
+
+/* ========================================
+   FLOATING PETALS (Carta Section)
+======================================== */
+const Petals = {
+  container: null,
+
+  init() {
+    this.container = document.getElementById("petals")
+    if (!this.container) return
+
+    this.createPetals()
+  },
+
+  createPetals() {
+    for (let i = 0; i < 20; i++) {
+      const petal = document.createElement("div")
+      petal.className = "petal"
+
+      const left = Math.random() * 100
+      const delay = Math.random() * 10
+      const duration = Math.random() * 10 + 15
+      const size = Math.random() * 15 + 10
+
+      petal.style.cssText = `
+        left: ${left}%;
+        width: ${size}px;
+        height: ${size}px;
+        animation-delay: ${delay}s;
+        animation-duration: ${duration}s;
+      `
+
+      this.container.appendChild(petal)
+    }
+  },
+}
