@@ -1226,7 +1226,7 @@ a {
   overflow: hidden;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
-  background:#5a0032;
+  background:#000000;
 }
 
 .carousel-track {
@@ -1243,7 +1243,7 @@ a {
 .slide-inner {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3; /* ✅ PROPORCAO FIXA */
+  aspect-ratio: 4 / 3; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1258,7 +1258,7 @@ a {
   object-fit: contain;
   padding: 1rem;
   display: block;
-  border-radius: 16px; /* ✅ BORDA ARREDONDADA */
+  border-radius: 16px;
   box-shadow: 0 5px 20px rgba(255, 107, 157, 0.2);
   transition: all 0.3s ease;
 }
@@ -1268,7 +1268,7 @@ a {
   box-shadow: 0 10px 35px rgba(255, 107, 157, 0.4);
 }
 
-/* Alternativa se quiser preencher mais */
+
 .slide-inner img.fill {
   object-fit: cover; /* Para fotos que preenchem tudo */
 }
@@ -2115,21 +2115,180 @@ a {
   overflow: hidden;
 }
 
-.video-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  color: var(--gray-400);
+/* ========================================
+   VIDEOS
+======================================== */
+.videos {
+  background: var(--cream);
 }
 
-.video-placeholder ion-icon {
-  font-size: 64px;
-  color: var(--accent);
+.video-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
 }
+
+/* CARD */
+.video-card {
+  cursor: pointer;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.video-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+/* THUMB */
+.video-thumbnail {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.video-card:hover .video-thumbnail img {
+  transform: scale(1.1);
+}
+
+/* PLAY OVERLAY */
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(139, 41, 66, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.video-card:hover .video-play-overlay {
+  opacity: 1;
+}
+
+.play-button {
+  width: 80px;
+  height: 80px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.play-button ion-icon {
+  font-size: 32px;
+  color: var(--primary);
+  margin-left: 4px;
+}
+
+/* INFO */
+.video-info {
+  padding: 20px;
+}
+
+.video-info h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.video-info p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--gray-500);
+}
+
+/* ========================================
+   VIDEO MODAL (🔥 IMPORTANTE 🔥)
+======================================== */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.video-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* FUNDO */
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* CAIXA */
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+  transform: scale(0.9);
+  transition: transform var(--transition-normal);
+}
+
+.video-modal.active .video-modal-content {
+  transform: scale(1);
+}
+
+/* BOTÃO FECHAR */
+.modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.modal-close ion-icon {
+  font-size: 24px;
+  color: var(--primary);
+}
+
+/* PLAYER */
+.video-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: black;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* 🔥 ISSO É O MAIS IMPORTANTE 🔥 */
+.video-player video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: black;
+}
+
 
 /* ========================================
    CONTAGEM REGRESSIVA
@@ -3091,6 +3250,121 @@ a {
   margin: 0 0.5rem;
   color: #ff6b9d;
 }
+
+/* ===============================
+   FOOTER
+================================ */
+.footer {
+  position: relative;
+  background: linear-gradient(180deg, #4b0f1c, #2a070f);
+  padding: 80px 20px 50px;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* Corações flutuando no topo */
+.footer-hearts {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 18px;
+  opacity: 0.25;
+}
+
+.footer-hearts ion-icon {
+  font-size: 18px;
+  color: #ffb3c1;
+  animation: floatHeart 4s ease-in-out infinite;
+}
+
+.footer-hearts ion-icon:nth-child(2) {
+  animation-delay: 1.2s;
+}
+
+.footer-hearts ion-icon:nth-child(3) {
+  animation-delay: 2.4s;
+}
+
+/* Conteúdo central */
+.footer-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  padding: 40px 30px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+/* Logo */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.footer-logo ion-icon {
+  font-size: 22px;
+  color: #ffb3c1;
+  filter: drop-shadow(0 0 8px rgba(255, 179, 193, 0.5));
+}
+
+/* Texto */
+.footer-content p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin: 12px 0 20px;
+}
+
+/* Linha de corações */
+.footer-hearts-line {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.footer-hearts-line ion-icon {
+  font-size: 16px;
+  color: #ffb3c1;
+  opacity: 0.6;
+}
+
+/* Animação */
+@keyframes floatHeart {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .footer {
+    padding: 60px 15px 40px;
+  }
+
+  .footer-content {
+    padding: 30px 20px;
+  }
+
+  .footer-logo {
+    font-size: 1.4rem;
+  }
+}
+
 
 /* Mobile */
 @media (max-width: 768px) {

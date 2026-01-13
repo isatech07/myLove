@@ -485,12 +485,7 @@ const MusicPlayer = {
       duration: "4:19",
       cover: "/img/capa_ainda-bem.png",
       file: "/audio/Vanessa da Mata - Ainda Bem.mp3"
-    },
-
-
-
-    
-    
+    },    
   ],
   currentTrack: 0,
   isPlaying: false,
@@ -786,48 +781,77 @@ const MusicPlayer = {
   }
 }
 
+/* ===============================
+   VIDEO MODAL
+=============================== */
+const videoCards = document.querySelectorAll('.video-card');
+const modal = document.getElementById('videoModal');
+const modalVideo = document.getElementById('modalVideo');
+const closeModal = document.getElementById('closeModal');
 
+videoCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const videoSrc = card.dataset.videoSrc;
+
+    modalVideo.src = videoSrc;
+    modal.classList.add('active');
+    modalVideo.play();
+  });
+});
+
+closeModal.addEventListener('click', () => {
+  modal.classList.remove('active');
+  modalVideo.pause();
+  modalVideo.src = '';
+});
 
 /* ========================================
-   VIDEO MODAL
+   CONTAGEM REGRESSIVA
+   Data alvo: 28 de Janeiro de 2027
 ======================================== */
-const VideoModal = {
-  modal: null,
 
-  init() {
-    this.modal = document.getElementById("videoModal")
-    this.closeBtn = document.getElementById("closeModal")
-    this.videoCards = document.querySelectorAll(".video-card")
+const targetDate = new Date('2027-01-28T00:00:00').getTime();
 
-    if (!this.modal) return
+function updateCountdown() {
+  const now = new Date().getTime();
+  const difference = targetDate - now;
 
-    this.bindEvents()
-  },
+  if (difference <= 0) {
+    setDigits('days', 0, 3);
+    setDigits('hours', 0, 2);
+    setDigits('minutes', 0, 2);
+    setDigits('seconds', 0, 2);
+    return;
+  }
 
-  bindEvents() {
-    this.videoCards.forEach((card) => {
-      card.addEventListener("click", () => this.open())
-    })
+  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((difference / (1000 * 60)) % 60);
+  const seconds = Math.floor((difference / 1000) % 60);
 
-    this.closeBtn.addEventListener("click", () => this.close())
-
-    this.modal.querySelector(".modal-backdrop").addEventListener("click", () => this.close())
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") this.close()
-    })
-  },
-
-  open() {
-    this.modal.classList.add("active")
-    document.body.style.overflow = "hidden"
-  },
-
-  close() {
-    this.modal.classList.remove("active")
-    document.body.style.overflow = ""
-  },
+  setDigits('days', days, 3);
+  setDigits('hours', hours, 2);
+  setDigits('minutes', minutes, 2);
+  setDigits('seconds', seconds, 2);
 }
+
+function setDigits(id, value, digitsCount) {
+  const container = document.getElementById(id);
+  const digits = value.toString().padStart(digitsCount, '0').split('');
+
+  container.innerHTML = '';
+  digits.forEach(digit => {
+    const span = document.createElement('span');
+    span.classList.add('digit');
+    span.textContent = digit;
+    container.appendChild(span);
+  });
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+
 
 /* ========================================
    COUNTDOWN
