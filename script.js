@@ -4,6 +4,42 @@
 ======================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
+  // ✅ BOTÃO HERO
+  const heroBtn = document.querySelector('.hero-btn');
+  if (heroBtn) {
+    heroBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = heroBtn.dataset.scrollTo || 'momentos';
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  // ✅ SCROLL INDICATOR - CONTROLE
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  
+  if (scrollIndicator) {
+    const hideScrollIndicator = () => {
+      if (window.scrollY > 200) {
+        scrollIndicator.classList.add('hidden');
+      } else {
+        scrollIndicator.classList.remove('hidden');
+      }
+    };
+
+    window.addEventListener('scroll', hideScrollIndicator, { passive: true });
+    
+    // Clique no scroll indicator também rola
+    scrollIndicator.addEventListener('click', () => {
+      const momentos = document.getElementById('momentos');
+      if (momentos) {
+        momentos.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
   // Initialize all modules
   Navigation.init()
   FloatingHearts.init()
@@ -118,6 +154,7 @@ const FloatingHearts = {
 /* ========================================
    CURSOR TRAIL
 ======================================== */
+// FIX: Desabilitar cursor trail em mobile (melhora scroll)
 const CursorTrail = {
   container: null,
   lastX: 0,
@@ -126,9 +163,10 @@ const CursorTrail = {
 
   init() {
     this.container = document.getElementById("cursorTrail")
-    if (!this.container || window.innerWidth < 768) return
+    // ✅ Desabilitar em mobile E tablets
+    if (!this.container || window.innerWidth < 1024) return
 
-    document.addEventListener("mousemove", (e) => this.handleMove(e))
+    document.addEventListener("mousemove", (e) => this.handleMove(e), { passive: true })
   },
 
   handleMove(e) {
@@ -346,7 +384,7 @@ const MusicPlayer = {
     { 
       title: "Get You", 
       artist: "Daniel Caesar", 
-      duration: "4:29", 
+      duration: "3:31", 
       cover: "/img/capa_get-you.png",
       file: "/audio/Get You-Daniel Caesar.mp3"
     },
@@ -360,24 +398,99 @@ const MusicPlayer = {
     {
       title: "Afrodite",
       artist: "Delacruz e Iza",
-      duration: "4:45",
+      duration: "3:35",
       cover: "/img/capa_afrodite.png",
       file: "/audio/afrodite - Delacruz e Iza.mp3"
     },
     { 
       title: "Aliança", 
       artist: "Tribalhistas", 
-      duration: "3:32", 
+      duration: "4:11", 
       cover: "/img/capa_alianças.png",
-      file: "/audio/Aliança - Tribalistas.mp3.mp3"
+      file: "/audio/Aliança - Tribalistas.mp3"
     },
     {
       title: " A Thousand Years",
       artist: "Christina Perri",
-      duration: "3:01",
+      duration: "4:47",
       cover: "/img/capa_a-thousand-years.png",
       file: "/audio/Christina Perri - A Thousand Years.mp3"
     },
+    {
+      title: "Love Love",
+      artist: "Gilsons",
+      duration: "3:29",
+      cover: "/img/capa_love-love.png",
+      file: "/audio/Gilsons - Love Love.mp3"
+    },
+    {
+      title: "Japanese Denim",
+      artist: "Daniel Caesar",
+      duration: "3:29",
+      cover: "/img/capa_get-you.png",
+      file: "/audio/Japanese Denim.mp3"
+    },
+    {
+      title: "2 Much",
+      artist: "Justin Biber",
+      duration: "2:32",
+      cover: "/img/capa_2much.png",
+      file: "/audio/Justin Bieber - 2 Much.mp3"
+    },
+    {
+      title: "All That Matters",
+      artist: "Justin Biber",
+      duration: "3:11",
+      cover: "/img/capa_all-the-matters.png",
+      file: "/audio/Justin Bieber - All That Matters.mp3"
+    },
+    {
+      title: "Mistletoe",
+      artist: "Justin Biber",
+      duration: "3:03",
+      cover: "/img/capa_mistelone.png",
+      file: "/audio/Justin Bieber - Mistletoe.mp3"
+    },
+    {
+      title: "Loose",
+      artist: "Daniel Caesar",
+      duration: "3:27",
+      cover: "/img/capa_get-you.png",
+      file: "/audio/Loose.mp3"
+    },
+    {
+      title: "Love Me",
+      artist: "RealestK",
+      duration: "3:05",
+      cover: "/img/capa_love-me.png",
+      file: "/audio/RealestK - Love Me.mp3"
+    },
+    {
+      title: "Partilhar",
+      artist: "Rubel",
+      duration: "3:05",
+      cover: "/img/capa_partilhar.png",
+      file: "/audio/Rubel - Partilhar.mp3"
+    },
+    {
+      title: "Turning Page",
+      artist: "Sleeping At Last",
+      duration: "4:15",
+      cover: "/img/capa_turning-page.png",
+      file: "/audio/Turning Page.mp3"
+    },
+    {
+      title: "Ainda Bem",
+      artist: "Vanessa da Mata",
+      duration: "4:19",
+      cover: "/img/capa_ainda-bem.png",
+      file: "/audio/Vanessa da Mata - Ainda Bem.mp3"
+    },
+
+
+
+    
+    
   ],
   currentTrack: 0,
   isPlaying: false,
@@ -496,6 +609,7 @@ const MusicPlayer = {
         this.isPlaying = false
         this.elements.playIcon.setAttribute("name", "play")
         this.elements.equalizer.classList.remove("playing")
+        this.stopProgress()
       })
   },
 
@@ -530,10 +644,7 @@ const MusicPlayer = {
     
     // Se estava tocando antes, tocar a nova música
     if (this.isPlaying) {
-      // Pequeno delay para garantir que o áudio foi carregado
-      setTimeout(() => {
-        this.play()
-      }, 100)
+      this.play()
     }
   },
 
@@ -558,9 +669,7 @@ const MusicPlayer = {
       
       // Se estava tocando antes, tocar a nova música
       if (this.isPlaying) {
-        setTimeout(() => {
-          this.play()
-        }, 100)
+        this.play()
       }
     }
   },
@@ -589,16 +698,6 @@ const MusicPlayer = {
     this.elements.progressFill.style.width = `${percent}%`
     this.elements.progressHandle.style.left = `${percent}%`
     this.elements.currentTime.textContent = this.formatTime(currentTime)
-    
-    // Se a música terminou
-    if (currentTime >= duration) {
-      if (this.isRepeat) {
-        this.audio.currentTime = 0
-        this.play()
-      } else {
-        this.next()
-      }
-    }
   },
 
   seekTo(percent) {
@@ -672,7 +771,10 @@ const MusicPlayer = {
     })
 
     this.audio.addEventListener('ended', () => {
-      if (!this.isRepeat) {
+      if (this.isRepeat) {
+        this.audio.currentTime = 0
+        this.play()
+      } else {
         this.next()
       }
     })
@@ -681,27 +783,10 @@ const MusicPlayer = {
       console.error('Erro no áudio:', e)
       this.pause()
     })
-
-    this.audio.addEventListener('play', () => {
-      this.isPlaying = true
-      this.elements.playIcon.setAttribute("name", "pause")
-      this.elements.equalizer.classList.add("playing")
-      this.startProgress()
-    })
-
-    this.audio.addEventListener('pause', () => {
-      this.isPlaying = false
-      this.elements.playIcon.setAttribute("name", "play")
-      this.elements.equalizer.classList.remove("playing")
-      this.stopProgress()
-    })
   }
 }
 
-// Inicializar quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', () => {
-  MusicPlayer.init()
-})
+
 
 /* ========================================
    VIDEO MODAL
@@ -1023,26 +1108,46 @@ const ResponseArea = {
    PARALLAX EFFECTS
 ======================================== */
 const ParallaxEffects = {
+  ticking: false,
+  scrolled: 0,
+
   init() {
     if (window.innerWidth < 768) return
 
     window.addEventListener("scroll", () => {
-      const scrolled = window.pageYOffset
-
-      // Hero parallax
-      const heroContent = document.querySelector(".hero-content")
-      if (heroContent) {
-        heroContent.style.transform = `translateY(${scrolled * 0.3}px)`
-        heroContent.style.opacity = 1 - scrolled / 600
+      this.scrolled = window.pageYOffset
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          this.updateParallax()
+          this.ticking = false
+        })
+        this.ticking = true
       }
-
-      // Hero hearts parallax
-      const heroHearts = document.querySelectorAll(".heart-float")
-      heroHearts.forEach((heart, index) => {
-        const speed = (index + 1) * 0.05
-        heart.style.transform = `translateY(${scrolled * speed}px)`
-      })
     })
+  },
+
+  updateParallax() {
+    const scrolled = this.scrolled
+
+    // Hero parallax
+    const heroContent = document.querySelector(".hero-content")
+    if (heroContent) {
+      heroContent.style.transform = `translateY(${scrolled * 0.3}px)`
+      heroContent.style.opacity = 1 - scrolled / 600
+    }
+
+    // Hero hearts parallax
+    const heroHearts = document.querySelectorAll(".heart-float")
+    heroHearts.forEach((heart, index) => {
+      const speed = (index + 1) * 0.05
+      heart.style.transform = `translateY(${scrolled * speed}px)`
+    })
+
+    // Fade out scroll indicator
+    const scrollIndicator = document.querySelector(".scroll-indicator");
+    if (scrollIndicator) {
+        scrollIndicator.style.opacity = Math.max(0, 1 - scrolled / 300);
+    }
   },
 }
 

@@ -1,14 +1,22 @@
-﻿<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+﻿<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossa História de Amor</title>
+    <title>H & I</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- <link rel="icon" href="favicon.png" type="image/png"> -->
+     <link rel="icon" href="img/favicon-32x32.png" type="image/png">
+
     <link rel="stylesheet" href="style.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
+
 <body>
     <!-- Floating Hearts Background -->
     <div class="floating-hearts" id="floatingHearts"></div>
@@ -64,8 +72,9 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <ion-icon name="sparkles"></ion-icon>
-                <span>Uma historia especial</span>
+                <span>Uma história especial</span>
             </div>
+            
             <div class="hero-heart-main">
                 <div class="heart-pulse">
                     <ion-icon name="heart"></ion-icon>
@@ -76,27 +85,26 @@
                     <div class="ring ring-3"></div>
                 </div>
             </div>
+            
             <h1 class="hero-title">
-                <span class="title-line">Nossa Historia</span>
+                <span class="title-line">Nossa História</span>
                 <span class="title-line title-accent">de Amor</span>
             </h1>
+            
             <p class="hero-subtitle">Cada momento ao seu lado e uma página sendo construída da nossa história</p>
-            <a href="#momentos" class="hero-btn">
-                <span class="btn-bg"></span>
-                <span class="btn-content">
-                    <ion-icon name="book-outline"></ion-icon>
-                    <span>Entrar na nossa historia</span>
-                </span>
-                <span class="btn-glow"></span>
-            </a>
+            
+            <button class="hero-btn" data-scroll-to="momentos">
+                <ion-icon name="book-outline"></ion-icon>
+                <span>Entrar na nossa historia</span>
+            </button>
         </div>
-        
+
+        <!-- Scroll Indicator - SEPARADO E INDEPENDENTE -->
         <div class="scroll-indicator">
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
+            <div class="scroll-text">Role para descobrir</div>
+            <div class="scroll-icon">
+                <ion-icon name="chevron-down"></ion-icon>
             </div>
-            <span>Role para descobrir</span>
-            <ion-icon name="chevron-down-outline"></ion-icon>
         </div>
     </section>
 
@@ -162,7 +170,7 @@
                                 30 de Janeiro • 2024
                             </span>
                             <h3>Primeiro Beijo</h3>
-                            <p>Foi no mês em que tudo começou… A gente saía da igreja, conversava sobre sonhos e até sobre o futuro. Entre risadas, chuva de surpresa e mãos dadas na praia, aconteceu aquele momento que marcou nossa história — o nosso primeiro beijo. Um dia simples, mas cheio de significado. O início de um sentimento que só cresceu desde então. 🤍</p>
+                            <p>Foi no mês em que tudo começou… A gente saía da igreja, conversava sobre sonhos e até sobre o futuro. Entre risadas, chuva de surpresa e mãos dadas na praia, aconteceu aquele momento que marcou nossa história, o nosso primeiro beijo. Um dia simples, mas cheio de significado. O início de um sentimento que só cresceu desde então. 🤍</p>
                         </div>
                         <div class="card-hearts">
                             <ion-icon name="heart"></ion-icon>
@@ -185,7 +193,7 @@
                                 8 de Março • 2024
                             </span>
                             <h3>Juntos na Escola</h3>
-                            <p>Quando você chegou na escola pela primeira vez, tudo parecia diferente. O nervosismo virou alegria assim que os olhares se encontraram — como se Deus estivesse confirmando que aquele era o caminho certo para os dois. Entre risadas, conversas no intervalo e o apoio diário, a escola deixou de ser apenas um lugar de rotina… virou o cenário do crescimento do amor de vocês. Foi ali que Deus fortaleceu o vínculo, guiando cada passo, cada oração compartilhada e cada novo capítulo dessa história que só Ele poderia escrever. Uma prova viva de que quando vem de Deus, tudo floresce — até mesmo nos dias mais comuns. 💞✨</p>
+                            <p>Quando você chegou na escola pela primeira vez, tudo parecia diferente. O nervosismo virou alegria assim que os olhares se encontraram, como se Deus estivesse confirmando que aquele era o caminho certo para os dois. Entre risadas, conversas no intervalo e o apoio diário, a escola deixou de ser apenas um lugar de rotina… virou o cenário do crescimento do amor de vocês. Foi ali que Deus fortaleceu o vínculo, guiando cada passo, cada oração compartilhada e cada novo capítulo dessa história que só Ele poderia escrever. Uma prova viva de que quando vem de Deus, tudo floresce, até mesmo nos dias mais comuns. 💞✨</p>
                         </div>
                         <div class="card-hearts">
                             <ion-icon name="heart"></ion-icon>
@@ -233,102 +241,258 @@
 
     <!-- Carrossel de Fotos -->
     <section id="galeria" class="section galeria">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-icon">
-                    <ion-icon name="camera"></ion-icon>
-                </div>
-                <h2>Entre Risos e Memórias</h2>
-                <p>Momentos eternizados em fotografias</p>
-                <div class="section-line"></div>
+    <div class="container">
+        <div class="section-header">
+            <div class="section-icon">
+                <ion-icon name="heart"></ion-icon>
             </div>
-            <div class="carousel-wrapper">
-                <div class="carousel-container">
-                    <div class="carousel">
-                        <div class="carousel-track">
-                            <div class="carousel-slide">
-                                <div class="slide-inner">
-                                    <img src="img/foto-4.jpeg" alt="Foto 1">
-                                    <div class="slide-overlay"></div>
-                                    <div class="slide-caption">
-                                        <ion-icon name="location"></ion-icon>
-                                        <span>Beijinhos na praça</span>
-                                    </div>
-                                    <div class="slide-hearts">
-                                        <ion-icon name="heart"></ion-icon>
-                                    </div>
+            <h2>Entre Risos e Memórias</h2>
+            <p>Momentos eternizados em fotografias</p>
+            <div class="section-line"></div>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-4.png" alt="Foto 1">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Beijinhos na praça</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
                                 </div>
                             </div>
-                            <div class="carousel-slide">
-                                <div class="slide-inner">
-                                    <img src="img/foto-5.jpeg" alt="Foto 2">
-                                    <div class="slide-overlay"></div>
-                                    <div class="slide-caption">
-                                        <ion-icon name="moon"></ion-icon>
-                                        <span>Dias felizes na escola</span>
-                                    </div>
-                                    <div class="slide-hearts">
-                                        <ion-icon name="heart"></ion-icon>
-                                    </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-5.png" alt="Foto 2">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Dias felizes na escola</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
                                 </div>
                             </div>
-                            <div class="carousel-slide">
-                                <div class="slide-inner">
-                                    <img src="img/foto-6.jpeg" alt="Foto 3">
-                                    <div class="slide-overlay"></div>
-                                    <div class="slide-caption">
-                                        <ion-icon name="leaf"></ion-icon>
-                                        <span>Entre o mar e o amor</span>
-                                    </div>
-                                    <div class="slide-hearts">
-                                        <ion-icon name="heart"></ion-icon>
-                                    </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-6.png" alt="Foto 3">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Entre o mar e o amor</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
                                 </div>
                             </div>
-                            <div class="carousel-slide">
-                                <div class="slide-inner">
-                                    <img src="img/foto-7.jpeg" alt="Foto 4">
-                                    <div class="slide-overlay"></div>
-                                    <div class="slide-caption">
-                                        <ion-icon name="musical-note"></ion-icon>
-                                        <span>Dancando juntos</span>
-                                    </div>
-                                    <div class="slide-hearts">
-                                        <ion-icon name="heart"></ion-icon>
-                                    </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-7.png" alt="Foto 4">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Cantando juntos</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
                                 </div>
                             </div>
-                            <div class="carousel-slide">
-                                <div class="slide-inner">
-                                    <img src="img/foto-8.jpeg" alt="Foto 5">
-                                    <div class="slide-overlay"></div>
-                                    <div class="slide-caption">
-                                        <ion-icon name="trail-sign"></ion-icon>
-                                        <span>Aventura nas montanhas</span>
-                                    </div>
-                                    <div class="slide-hearts">
-                                        <ion-icon name="heart"></ion-icon>
-                                    </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-8.png" alt="Foto 5">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Viajens Inesquecíveis</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-9.png" alt="Foto 6">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Momentos especiais</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-10.png" alt="Foto 7">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Juntos sempre</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-11.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-12.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-13.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-14.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-15.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-16.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-17.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-18.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-19.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-inner">
+                                <img src="img/foto-20.png" alt="Foto 8">
+                                <div class="slide-overlay"></div>
+                                <div class="slide-caption">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span>Amor e cumplicidade</span>
+                                </div>
+                                <div class="slide-hearts">
+                                    <ion-icon name="heart"></ion-icon>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-btn prev" aria-label="Anterior">
-                        <ion-icon name="chevron-back"></ion-icon>
-                    </button>
-                    <button class="carousel-btn next" aria-label="Proximo">
-                        <ion-icon name="chevron-forward"></ion-icon>
-                    </button>
-                </div>
-                <div class="carousel-indicators"></div>
-                <div class="carousel-counter">
-                    <span id="currentSlide">01</span>
-                    <span class="separator">/</span>
-                    <span id="totalSlides">05</span>
                 </div>
             </div>
+            <button class="carousel-btn prev" aria-label="Anterior">
+                <ion-icon name="chevron-back"></ion-icon>
+            </button>
+            <button class="carousel-btn next" aria-label="Proximo">
+                <ion-icon name="chevron-forward"></ion-icon>
+            </button>
+            <div class="carousel-indicators"></div>
+            <div class="carousel-counter">
+                <span id="currentSlide">01</span>
+                <span class="separator">/</span>
+                <span id="totalSlides">20</span>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Playlist do Casal -->
     <section id="playlist" class="section playlist">
