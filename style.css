@@ -2,25 +2,24 @@
    MODERN ROMANTIC WEBSITE - STYLE.CSS
    Ultra-modern design with premium effects
 ======================================== */
-
 :root {
   /* Wine/Burgundy Premium Palette */
   --primary: #8b2942;
   --primary-light: #a83d5c;
   --primary-dark: #6b1d32;
   --primary-deeper: #4a1423;
-
+  
   /* Accent Colors */
   --accent: #e8b4b8;
   --accent-light: #f5d7d9;
   --accent-glow: rgba(232, 180, 184, 0.5);
-
+  
   /* Rich Gradients */
   --gradient-primary: linear-gradient(135deg, #8b2942 0%, #a83d5c 50%, #6b1d32 100%);
   --gradient-dark: linear-gradient(135deg, #1a0a0f 0%, #2d1219 50%, #1a0a0f 100%);
   --gradient-glass: linear-gradient(135deg, rgba(139, 41, 66, 0.1) 0%, rgba(168, 61, 92, 0.05) 100%);
   --gradient-glow: radial-gradient(circle, rgba(232, 180, 184, 0.3) 0%, transparent 70%);
-
+  
   /* Neutrals */
   --white: #ffffff;
   --off-white: #fdf8f9;
@@ -34,35 +33,35 @@
   --gray-700: #2d2426;
   --gray-800: #1a1516;
   --black: #0d0a0b;
-
+  
   /* Glass Effects */
   --glass-light: rgba(255, 255, 255, 0.85);
   --glass-dark: rgba(26, 10, 15, 0.9);
   --glass-border-light: rgba(255, 255, 255, 0.3);
   --glass-border-dark: rgba(232, 180, 184, 0.2);
-
+  
   /* Shadows */
   --shadow-sm: 0 2px 10px rgba(139, 41, 66, 0.1);
   --shadow-md: 0 8px 30px rgba(139, 41, 66, 0.15);
   --shadow-lg: 0 20px 50px rgba(139, 41, 66, 0.2);
   --shadow-xl: 0 30px 80px rgba(139, 41, 66, 0.25);
   --shadow-glow: 0 0 40px rgba(232, 180, 184, 0.4);
-
+  
   /* Typography */
   --font-primary: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: "Playfair Display", Georgia, serif;
-
+  
   /* Spacing */
   --section-padding: 120px 0;
   --container-max: 1200px;
-
+  
   /* Transitions */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-fast: 0.2s var(--ease-out-expo);
   --transition-normal: 0.4s var(--ease-out-expo);
   --transition-slow: 0.6s var(--ease-out-expo);
-
+  
   /* Border Radius */
   --radius-sm: 12px;
   --radius-md: 20px;
@@ -114,11 +113,16 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+  outline: none;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+ul {
+  list-style: none;
 }
 
 /* ========================================
@@ -225,7 +229,10 @@ a {
 
 .section-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
 }
 
@@ -377,6 +384,7 @@ a {
   gap: 6px;
   padding: 8px;
   z-index: 1001;
+  background: transparent;
 }
 
 .nav-toggle span {
@@ -422,7 +430,10 @@ a {
 .nav-links a::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: var(--gradient-primary);
   opacity: 0;
   transition: opacity var(--transition-fast);
@@ -435,8 +446,7 @@ a {
   z-index: 1;
 }
 
-.nav-links a span,
-.nav-links a:not(:has(span)) {
+.nav-links a span {
   position: relative;
   z-index: 1;
 }
@@ -454,7 +464,6 @@ a {
   .nav-toggle {
     display: flex;
   }
-
   .nav-links {
     position: fixed;
     top: 0;
@@ -472,11 +481,9 @@ a {
     transition: transform var(--transition-normal);
     box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
   }
-
   .nav-links.active {
     transform: translateX(0);
   }
-
   .nav-links a {
     padding: 16px 20px;
     font-size: 1rem;
@@ -498,12 +505,18 @@ a {
 
 .hero-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .hero-gradient {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(circle at 20% 20%, rgba(232, 180, 184, 0.3) 0%, transparent 40%),
     radial-gradient(circle at 80% 80%, rgba(168, 61, 92, 0.4) 0%, transparent 40%),
     radial-gradient(circle at 50% 50%, rgba(107, 29, 50, 0.3) 0%, transparent 60%);
@@ -524,7 +537,10 @@ a {
 
 .hero-particles {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
     radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
     radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
@@ -568,7 +584,10 @@ a {
 /* Hero Hearts */
 .hero-hearts {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
 }
 
@@ -589,39 +608,46 @@ a {
   left: 10%;
   animation-delay: 0s;
 }
+
 .heart-2 {
   top: 20%;
   right: 15%;
   animation-delay: 2s;
   font-size: 32px;
 }
+
 .heart-3 {
   top: 60%;
   left: 5%;
   animation-delay: 4s;
 }
+
 .heart-4 {
   top: 70%;
   right: 10%;
   animation-delay: 6s;
   font-size: 28px;
 }
+
 .heart-5 {
   top: 40%;
   left: 15%;
   animation-delay: 8s;
 }
+
 .heart-6 {
   top: 80%;
   right: 20%;
   animation-delay: 10s;
 }
+
 .heart-7 {
   top: 30%;
   right: 25%;
   animation-delay: 12s;
   font-size: 20px;
 }
+
 .heart-8 {
   top: 50%;
   left: 20%;
@@ -704,7 +730,10 @@ a {
 
 .heart-rings {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -767,7 +796,7 @@ a {
 }
 
 /* ========================================
-   HERO BUTTON - NOVO
+   HERO BUTTON
 ======================================== */
 .hero-btn {
   display: inline-flex;
@@ -776,22 +805,18 @@ a {
   gap: 0.75rem;
   padding: 1rem 2.5rem;
   margin-top: 1rem;
-  
   background: linear-gradient(180deg, #960032 0%, #5a003c 100%);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
-  
   color: white;
   font-size: 1rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
-  
   cursor: pointer;
   position: relative;
   z-index: 15;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
   animation: fadeInUp 0.8s ease 0.8s both;
 }
 
@@ -831,7 +856,7 @@ a {
 }
 
 /* ========================================
-   SCROLL INDICATOR - REDESENHADO
+   SCROLL INDICATOR
 ======================================== */
 .scroll-indicator {
   position: fixed;
@@ -839,17 +864,15 @@ a {
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
-  
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  
-  pointer-events: none;
+  pointer-events: auto;
   user-select: none;
-  
   animation: slideInUp 0.8s ease 1s both;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: pointer;
 }
 
 .scroll-indicator.hidden {
@@ -956,15 +979,12 @@ a {
     min-height: auto;
     padding: 1.5rem;
   }
-
   .hero-title {
     font-size: clamp(1.5rem, 6vw, 2.5rem);
   }
-
   .scroll-indicator {
     bottom: 1.5rem;
   }
-
   .scroll-text {
     font-size: 0.75rem;
   }
@@ -979,7 +999,10 @@ a {
 
 .momentos .section-bg .bg-hearts {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -1073,36 +1096,39 @@ a {
   position: relative;
   max-height: 240px;
   overflow: hidden;
+  border-radius: var(--radius-sm);
 }
 
 .timeline-image img,
 .timeline-image video {
   width: 100%;
-  height: auto;
-  max-height: 240px;
-  object-fit: scale-down;
+  height: 100%;
+  object-fit: cover;
   display: block;
   margin: 0 auto;
+  transition: transform var(--transition-normal);
 }
-
-
 
 .timeline-content:hover .timeline-image img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
-.image-overlay {
+.timeline-image .image-overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(139, 41, 66, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity var(--transition-normal);
+  pointer-events: none;
 }
 
-.image-overlay ion-icon {
+.timeline-image .image-overlay ion-icon {
   font-size: 40px;
   color: var(--white);
 }
@@ -1160,47 +1186,25 @@ a {
   opacity: 0.5;
 }
 
-.timeline-image {
-  position: relative;
-}
-
-.timeline-image video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-  position: relative;
-  z-index: 1;
-}
-
-.timeline-image .image-overlay {
-  pointer-events: none; /* 🔥 ISSO RESOLVE */
-}
-
-
 /* Timeline Mobile */
 @media (max-width: 768px) {
   .timeline-line {
     left: 30px;
   }
-
   .timeline-item,
   .timeline-item:nth-child(even) {
     padding-left: 80px;
     padding-right: 0;
     justify-content: flex-start;
   }
-
   .timeline-icon {
     left: 30px;
     width: 50px;
     height: 50px;
   }
-
   .timeline-icon ion-icon {
     font-size: 22px;
   }
-
   .timeline-content {
     max-width: 100%;
   }
@@ -1210,7 +1214,7 @@ a {
    GALERIA (CAROUSEL)
 ======================================== */
 .galeria {
-  background:#ffffff4d ;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .carousel-wrapper {
@@ -1226,7 +1230,7 @@ a {
   overflow: hidden;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
-  background:#000000;
+  background: #000000;
 }
 
 .carousel-track {
@@ -1243,7 +1247,7 @@ a {
 .slide-inner {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3; 
+  aspect-ratio: 4 / 3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1268,14 +1272,12 @@ a {
   box-shadow: 0 10px 35px rgba(255, 107, 157, 0.4);
 }
 
-
-.slide-inner img.fill {
-  object-fit: cover; /* Para fotos que preenchem tudo */
-}
-
 .slide-overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(145, 43, 43, 0.2);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -1330,7 +1332,6 @@ a {
 /* ========================================
    CAROUSEL CONTROLES
 ======================================== */
-
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -1405,23 +1406,19 @@ a {
 /* Mobile */
 @media (max-width: 768px) {
   .slide-inner {
-    aspect-ratio: 1 / 1; /* ✅ QUADRADO EM MOBILE */
+    aspect-ratio: 1 / 1;
   }
-
   .carousel-btn {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
   }
-
   .carousel-btn.prev {
     left: 0.75rem;
   }
-
   .carousel-btn.next {
     right: 0.75rem;
   }
-
   .slide-caption {
     font-size: 0.85rem;
     padding: 0.5rem 1rem;
@@ -1439,7 +1436,10 @@ a {
 
 .playlist-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
 }
 
@@ -1463,7 +1463,10 @@ a {
 .vinyl::before {
   content: "";
   position: absolute;
-  inset: 30%;
+  top: 30%;
+  left: 30%;
+  right: 30%;
+  bottom: 30%;
   background: var(--primary);
   border-radius: 50%;
 }
@@ -1501,7 +1504,10 @@ a {
 
 .artwork-glow {
   position: absolute;
-  inset: -20px;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
   background: var(--gradient-glow);
   filter: blur(30px);
   opacity: 0.5;
@@ -1531,7 +1537,10 @@ a {
 
 .artwork-overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
@@ -1539,6 +1548,7 @@ a {
   z-index: 2;
   opacity: 0;
   transition: opacity var(--transition-normal);
+  pointer-events: none;
 }
 
 .player-artwork:hover .artwork-overlay {
@@ -1569,26 +1579,32 @@ a {
   height: 30%;
   animation-delay: 0s;
 }
+
 .eq-bar:nth-child(2) {
   height: 60%;
   animation-delay: 0.1s;
 }
+
 .eq-bar:nth-child(3) {
   height: 100%;
   animation-delay: 0.2s;
 }
+
 .eq-bar:nth-child(4) {
   height: 40%;
   animation-delay: 0.3s;
 }
+
 .eq-bar:nth-child(5) {
   height: 80%;
   animation-delay: 0.15s;
 }
+
 .eq-bar:nth-child(6) {
   height: 50%;
   animation-delay: 0.25s;
 }
+
 .eq-bar:nth-child(7) {
   height: 70%;
   animation-delay: 0.05s;
@@ -1605,7 +1621,10 @@ a {
 
 .vinyl-effect {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
   z-index: 3;
@@ -1689,6 +1708,7 @@ a {
   border-radius: 50%;
   transition: all var(--transition-fast);
   color: var(--gray-300);
+  background: transparent;
 }
 
 .control-btn ion-icon {
@@ -1722,7 +1742,10 @@ a {
 
 .play-ripple {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   transform: scale(0);
@@ -1808,11 +1831,6 @@ a {
   font-weight: 600;
 }
 
-.track-count {
-  font-size: 0.875rem;
-  color: var(--gray-400);
-}
-
 .playlist-list ul {
   list-style: none;
 }
@@ -1895,11 +1913,9 @@ a {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-
   .player-container {
     padding: 32px;
   }
-
   .player-artwork {
     width: 200px;
     height: 200px;
@@ -1933,6 +1949,7 @@ a {
 .video-thumbnail {
   position: relative;
   overflow: hidden;
+  border-radius: var(--radius-md);
 }
 
 .video-thumbnail img {
@@ -1948,7 +1965,10 @@ a {
 
 .video-play-overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(139, 41, 66, 0.4);
   display: flex;
   align-items: center;
@@ -1977,30 +1997,6 @@ a {
   font-size: 32px;
   color: var(--primary);
   margin-left: 4px;
-}
-
-.play-ripple-1,
-.play-ripple-2 {
-  position: absolute;
-  inset: -10px;
-  border: 2px solid var(--white);
-  border-radius: 50%;
-  animation: playRipple 2s ease-out infinite;
-}
-
-.play-ripple-2 {
-  animation-delay: 1s;
-}
-
-@keyframes playRipple {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
 }
 
 .video-duration {
@@ -2044,7 +2040,10 @@ a {
 /* Video Modal */
 .video-modal {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 2000;
   display: flex;
   align-items: center;
@@ -2062,7 +2061,10 @@ a {
 
 .modal-backdrop {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
 }
@@ -2093,6 +2095,7 @@ a {
   justify-content: center;
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-md);
+  cursor: pointer;
 }
 
 .modal-close ion-icon {
@@ -2115,180 +2118,12 @@ a {
   overflow: hidden;
 }
 
-/* ========================================
-   VIDEOS
-======================================== */
-.videos {
-  background: var(--cream);
-}
-
-.video-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
-}
-
-/* CARD */
-.video-card {
-  cursor: pointer;
-  overflow: hidden;
-  transition: all var(--transition-normal);
-}
-
-.video-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-xl);
-}
-
-/* THUMB */
-.video-thumbnail {
-  position: relative;
-  overflow: hidden;
-}
-
-.video-thumbnail img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  transition: transform 0.8s var(--ease-out-expo);
-}
-
-.video-card:hover .video-thumbnail img {
-  transform: scale(1.1);
-}
-
-/* PLAY OVERLAY */
-.video-play-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(139, 41, 66, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-}
-
-.video-card:hover .video-play-overlay {
-  opacity: 1;
-}
-
-.play-button {
-  width: 80px;
-  height: 80px;
-  background: var(--white);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-lg);
-}
-
-.play-button ion-icon {
-  font-size: 32px;
-  color: var(--primary);
-  margin-left: 4px;
-}
-
-/* INFO */
-.video-info {
-  padding: 20px;
-}
-
-.video-info h4 {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  color: var(--primary);
-  margin-bottom: 6px;
-}
-
-.video-info p {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  color: var(--gray-500);
-}
-
-/* ========================================
-   VIDEO MODAL (🔥 IMPORTANTE 🔥)
-======================================== */
-.video-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all var(--transition-normal);
-}
-
-.video-modal.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* FUNDO */
-.modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9);
-}
-
-/* CAIXA */
-.video-modal-content {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  padding: 20px;
-  transform: scale(0.9);
-  transition: transform var(--transition-normal);
-}
-
-.video-modal.active .video-modal-content {
-  transform: scale(1);
-}
-
-/* BOTÃO FECHAR */
-.modal-close {
-  position: absolute;
-  top: -50px;
-  right: 0;
-  width: 44px;
-  height: 44px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-md);
-  cursor: pointer;
-}
-
-.modal-close ion-icon {
-  font-size: 24px;
-  color: var(--primary);
-}
-
-/* PLAYER */
-.video-player {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: black;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
-/* 🔥 ISSO É O MAIS IMPORTANTE 🔥 */
 .video-player video {
   width: 100%;
   height: 100%;
   object-fit: contain;
   background: black;
 }
-
 
 /* ========================================
    CONTAGEM REGRESSIVA
@@ -2301,12 +2136,18 @@ a {
 
 .contagem-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .particles-container {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .countdown-container {
@@ -2444,19 +2285,15 @@ a {
   .countdown-grid {
     gap: 16px;
   }
-
   .countdown-item {
     min-width: 100px;
   }
-
   .countdown-card {
     padding: 20px 16px;
   }
-
   .countdown-value .digit {
     font-size: 2rem;
   }
-
   .countdown-separator {
     display: none;
   }
@@ -2538,6 +2375,7 @@ a {
   cursor: pointer;
   transition: all var(--transition-fast);
   text-align: left;
+  background: transparent;
 }
 
 .quiz-option ion-icon {
@@ -2598,7 +2436,10 @@ a {
 
 .result-hearts {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   gap: 30px;
@@ -2613,9 +2454,11 @@ a {
 .result-hearts ion-icon:nth-child(1) {
   animation-delay: 0s;
 }
+
 .result-hearts ion-icon:nth-child(2) {
   animation-delay: 0.3s;
 }
+
 .result-hearts ion-icon:nth-child(3) {
   animation-delay: 0.6s;
 }
@@ -2672,6 +2515,7 @@ a {
   font-size: 1rem;
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-md);
+  background: transparent;
 }
 
 .quiz-restart ion-icon {
@@ -2681,6 +2525,182 @@ a {
 .quiz-restart:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+}
+
+/* ========================================
+   DEPENDENTES SECTION
+======================================== */
+.dependentes-section {
+  padding: 100px 20px;
+  background: linear-gradient(to bottom, #3a0f1e, #14050a);
+  color: white;
+  text-align: center;
+}
+
+.dependentes-intro {
+  max-width: 720px;
+  margin: 0 auto 80px;
+}
+
+.dependentes-intro h2 {
+  font-size: 3.2rem;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+}
+
+.dependentes-intro p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+}
+
+.btn-reveal {
+  padding: 14px 40px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #3a0f1e;
+  background: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-reveal:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.dependentes-hidden-content .section-header {
+  margin: 0 auto 60px;
+  max-width: 800px;
+}
+
+.dependentes-hidden-content .section-header ion-icon {
+  font-size: 3.8rem;
+  margin-bottom: 1rem;
+}
+
+.dependentes-hidden-content .section-header h2 {
+  font-size: 2.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.video-item .video-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video-item .play-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.video-item:hover .play-button {
+  background: rgba(0,0,0,0.25);
+}
+
+.video-item .play-button ion-icon {
+  font-size: 80px;
+  color: white;
+  opacity: 0.9;
+}
+
+/* Modal Dependentes */
+#videoModalDependentes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#videoModalDependentes.active {
+  display: flex;
+}
+
+#videoModalDependentes .modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.88);
+}
+
+#videoModalDependentes .modal-content {
+  position: relative;
+  width: 92%;
+  max-width: 960px;
+  z-index: 2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#videoModalDependentes .modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#videoModalDependentes .modal-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: black;
 }
 
 /* ========================================
@@ -2694,12 +2714,18 @@ a {
 
 .carta-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .floating-petals {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
 }
 
@@ -2886,6 +2912,7 @@ a {
   font-weight: 600;
   font-size: 0.95rem;
   transition: all var(--transition-fast);
+  background: transparent;
 }
 
 .response-btn ion-icon {
@@ -2937,323 +2964,8 @@ a {
 }
 
 /* ========================================
-   RESPONSIVE ADJUSTMENTS
-======================================== */
-@media (max-width: 768px) {
-  :root {
-    --section-padding: 80px 0;
-  }
-
-  .section-header {
-    margin-bottom: 60px;
-  }
-
-  .section-icon {
-    width: 60px;
-    height: 60px;
-  }
-
-  .section-icon ion-icon {
-    font-size: 28px;
-  }
-
-  .quiz-container {
-    padding: 32px 24px;
-  }
-
-  .letter-container,
-  .response-container {
-    padding: 32px 24px;
-  }
-
-  .hero-content {
-    padding: 24px;
-  }
-
-  .hero-heart-main {
-    width: 80px;
-    height: 80px;
-  }
-
-  .heart-pulse ion-icon {
-    font-size: 50px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 12px 16px;
-  }
-
-  .nav-logo span {
-    display: none;
-  }
-
-  .carousel-counter {
-    display: none;
-  }
-
-  .countdown-message {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .countdown-message p {
-    font-size: 1.25rem;
-  }
-}
-
-/* FIX: Permitir cliques nos botões */
-.carousel-btn,
-.control-btn,
-.quiz-option,
-.response-btn,
-.modal-close,
-.nav-links a,
-.hero-btn {
-  pointer-events: auto !important;
-}
-
-/* FIX: Overlay não bloqueia interação */
-.image-overlay {
-  pointer-events: none; /* ✅ ADICIONADO */
-}
-
-.slide-overlay {
-  pointer-events: none; /* ✅ ADICIONADO */
-}
-
-.artwork-overlay {
-  pointer-events: none; /* ✅ ADICIONADO */
-}
-
-.video-play-overlay {
-  pointer-events: auto; /* ✅ MANTÉM CLICÁVEL */
-}
-
-/* FIX: Melhorar performance do scroll */
-.floating-hearts,
-.hero-particles,
-.petals {
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-/* FIX: Reduzir animações pesadas */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-  }
-}
-
-/* ========================================
-   LINHA DO TEMPO - IMAGENS AJUSTADAS
-======================================== */
-
-/* Para card de fotos na timeline */
-.moment-card img,
-.timeline-image,
-.foto-timeline {
-  width: 100%;
-  height: auto; /* ✅ MANTÉM PROPORÇÃO */
-  display: block;
-  object-fit: contain; /* ✅ SEM CORTE */
-  max-width: 100%;
-  border-radius: 12px;
-}
-
-/* Se for container quadrado */
-.moment-image-container,
-.timeline-photo-box {
-  width: 100%;
-  aspect-ratio: 1 / 1; /* ✅ FORÇA QUADRADO */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.moment-image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* ✅ EXIBE TUDO SEM CORTE */
-  padding: 1rem; /* espaço se necessário */
-}
-
-/* Alternativa: Se quiser preencher sem distorcer */
-.moment-image-container img {
-  object-fit: scale-down; /* ✅ Redimensiona sem distorcer */
-}
-
-/* ========================================
-   CAROUSEL - IMAGENS SEM CORTE
-======================================== */
-
-.carousel-slide {
-  flex: 0 0 100%;
-  padding: 0;
-}
-
-.slide-inner {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3; /* ✅ PROPORCAO FIXA */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(196, 69, 105, 0.1));
-  border-radius: 16px;
-}
-
-.slide-inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* ✅ SEM CORTE - MANTÉM PROPORCAO */
-  padding: 1rem; /* ✅ ESPAÇO INTERNO */
-  display: block;
-}
-
-/* Alternativa se quiser preencher mais */
-.slide-inner img.fill {
-  object-fit: cover; /* Para fotos que preenchem tudo */
-}
-
-.slide-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  border-radius: 16px;
-}
-
-.carousel-slide:hover .slide-overlay {
-  opacity: 1;
-}
-
-.slide-caption {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 0.75rem 1.5rem;
-  border-radius: 50px;
-  color: #c44569;
-  font-weight: 600;
-  font-size: 0.95rem;
-  backdrop-filter: blur(10px);
-  z-index: 10;
-  animation: slideInUp 0.4s ease;
-  transition: all 0.3s ease;
-}
-
-.slide-caption ion-icon {
-  font-size: 1.2rem;
-  color: #ff6b9d;
-}
-
-.carousel-slide:hover .slide-caption {
-  transform: translateX(-50%) translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
-}
-
-.slide-hearts {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.8rem;
-  color: #ff6b9d;
-  z-index: 5;
-  animation: heartBeat 1.2s ease-in-out infinite;
-}
-
-/* ========================================
-   CAROUSEL CONTROLES
-======================================== */
-
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid rgba(255, 107, 157, 0.3);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 20;
-  transition: all 0.3s ease;
-  color: #ff6b9d;
-  font-size: 1.5rem;
-}
-
-.carousel-btn:hover {
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
-  color: white;
-  border-color: white;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
-}
-
-.carousel-btn.prev {
-  left: 1.5rem;
-}
-
-.carousel-btn.next {
-  right: 1.5rem;
-}
-
-.carousel-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.carousel-indicators .indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid rgba(255, 107, 157, 0.5);
-}
-
-.carousel-indicators .indicator.active {
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
-  transform: scale(1.3);
-  border-color: #ff6b9d;
-}
-
-.carousel-counter {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.carousel-counter .separator {
-  margin: 0 0.5rem;
-  color: #ff6b9d;
-}
-
-/* ===============================
    FOOTER
-================================ */
+======================================== */
 .footer {
   position: relative;
   background: linear-gradient(180deg, #4b0f1c, #2a070f);
@@ -3262,7 +2974,6 @@ a {
   color: #fff;
 }
 
-/* Corações flutuando no topo */
 .footer-hearts {
   position: absolute;
   top: 20px;
@@ -3287,7 +2998,6 @@ a {
   animation-delay: 2.4s;
 }
 
-/* Conteúdo central */
 .footer-content {
   text-align: center;
   max-width: 600px;
@@ -3301,7 +3011,6 @@ a {
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
 }
 
-/* Logo */
 .footer-logo {
   display: flex;
   align-items: center;
@@ -3319,7 +3028,6 @@ a {
   filter: drop-shadow(0 0 8px rgba(255, 179, 193, 0.5));
 }
 
-/* Texto */
 .footer-content p {
   font-family: 'Poppins', sans-serif;
   font-size: 0.85rem;
@@ -3327,7 +3035,6 @@ a {
   margin: 12px 0 20px;
 }
 
-/* Linha de corações */
 .footer-hearts-line {
   display: flex;
   justify-content: center;
@@ -3340,55 +3047,100 @@ a {
   opacity: 0.6;
 }
 
-/* Animação */
-@keyframes floatHeart {
-  0%, 100% {
-    transform: translateY(0);
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 80px 0;
   }
-  50% {
-    transform: translateY(-6px);
+  .section-header {
+    margin-bottom: 60px;
+  }
+  .section-icon {
+    width: 60px;
+    height: 60px;
+  }
+  .section-icon ion-icon {
+    font-size: 28px;
+  }
+  .quiz-container {
+    padding: 32px 24px;
+  }
+  .letter-container,
+  .response-container {
+    padding: 32px 24px;
+  }
+  .dependentes-intro h2 {
+    font-size: 2.5rem;
+  }
+  .dependentes-intro p {
+    font-size: 1.1rem;
   }
 }
 
-/* Responsivo */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 16px;
+  }
+  .nav-logo span {
+    display: none;
+  }
+  .carousel-counter {
+    display: none;
+  }
+  .countdown-message {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .countdown-message p {
+    font-size: 1.25rem;
+  }
   .footer {
     padding: 60px 15px 40px;
   }
-
   .footer-content {
     padding: 30px 20px;
   }
-
   .footer-logo {
     font-size: 1.4rem;
   }
 }
 
+/* FIX: Permitir cliques nos botões */
+.carousel-btn,
+.control-btn,
+.quiz-option,
+.response-btn,
+.modal-close,
+.nav-links a,
+.hero-btn {
+  pointer-events: auto !important;
+}
 
-/* Mobile */
-@media (max-width: 768px) {
-  .slide-inner {
-    aspect-ratio: 1 / 1; /* ✅ QUADRADO EM MOBILE */
-  }
+/* FIX: Overlay não bloqueia interação */
+.image-overlay,
+.slide-overlay,
+.artwork-overlay {
+  pointer-events: none;
+}
 
-  .carousel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
+.video-play-overlay {
+  pointer-events: auto;
+}
 
-  .carousel-btn.prev {
-    left: 0.75rem;
-  }
+/* FIX: Melhorar performance do scroll */
+.floating-hearts,
+.hero-particles,
+.petals {
+  will-change: transform;
+  transform: translateZ(0);
+}
 
-  .carousel-btn.next {
-    right: 0.75rem;
-  }
-
-  .slide-caption {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
-    bottom: 1rem;
+/* FIX: Reduzir animações pesadas */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
